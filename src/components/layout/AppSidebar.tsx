@@ -26,6 +26,7 @@ const navItems = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const { signOut, user } = useAuth();
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-[240px] flex-col border-r border-border bg-sidebar">
@@ -59,12 +60,16 @@ export function AppSidebar() {
         })}
       </nav>
 
-      {/* Streak footer */}
-      <div className="border-t border-border px-4 py-3">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Flame size={14} className="text-warning" />
-          <span>12 jours de streak</span>
-        </div>
+      {/* Footer */}
+      <div className="border-t border-border px-4 py-3 space-y-2">
+        <p className="text-[10px] text-muted-foreground truncate">{user?.email}</p>
+        <button
+          onClick={signOut}
+          className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+        >
+          <LogOut size={14} />
+          <span>Déconnexion</span>
+        </button>
       </div>
     </aside>
   );
