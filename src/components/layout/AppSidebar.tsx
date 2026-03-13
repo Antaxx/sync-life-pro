@@ -10,6 +10,7 @@ import {
   Wallet,
   Bot,
   Flame,
+  LogOut,
 } from "lucide-react";
 
 const navItems = [
