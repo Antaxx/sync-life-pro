@@ -1,23 +1,14 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useSupabaseTable } from "@/hooks/useSupabaseTable";
-import { DashboardWidget } from "@/components/dashboard/DashboardWidget";
 import {
-  Target, Zap, FolderKanban, Heart, GraduationCap, Wallet, BookMarked,
-  Droplets, Footprints, Dumbbell, TrendingUp, ChevronRight, Flame,
-  CheckCircle2, Circle,
+  TrendingUp, Target, CalendarDays, CheckCircle2, Flame,
+  Footprints, Droplets, Dumbbell, BookOpen, ArrowUpRight,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-const quickLinks = [
-  { label: "Organisation", icon: Zap, path: "/organisation" },
-  { label: "Contenu", icon: BookMarked, path: "/content" },
-  { label: "Santé", icon: Heart, path: "/health" },
-  { label: "Business", icon: FolderKanban, path: "/business" },
-  { label: "Compétences", icon: GraduationCap, path: "/skills" },
-  { label: "Finances", icon: Wallet, path: "/finances" },
-];
+const goalIcons = [TrendingUp, Target, CalendarDays];
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -29,13 +20,14 @@ export default function Dashboard() {
   const { data: healthLogs } = useSupabaseTable("health_logs", { filter: { log_date: today } });
   const { data: skills } = useSupabaseTable("skills", { limit: 1, orderBy: { column: "last_session_date", ascending: false } });
   const { data: finances } = useSupabaseTable("finances");
-  const { data: contentItems } = useSupabaseTable("content_items", { filter: { status: "queue" } });
-  const { data: highlights } = useSupabaseTable("highlights");
+  const { data: contentItems } = useSupabaseTable("content_items", { filter: { status: "queue" }, limit: 2 });
 
   const now = new Date();
   const greeting = now.getHours() < 12 ? "Bonjour" : now.getHours() < 18 ? "Bon après-midi" : "Bonsoir";
-
+  const userName = user?.email?.split("@")[0] ?? "";
   const todayHealth = healthLogs[0];
+  const focusTasks = tasks.slice(0, 3);
+  const topSkill = skills[0];
 
   const monthFinances = useMemo(() => {
     const currentMonth = now.getMonth();
@@ -46,180 +38,247 @@ export default function Dashboard() {
     });
     const revenus = monthItems.filter(f => f.type === "revenue").reduce((s, f) => s + Number(f.amount), 0);
     const depenses = monthItems.filter(f => f.type === "expense").reduce((s, f) => s + Number(f.amount), 0);
-    return { revenus, depenses };
+    return { revenus, depenses, solde: revenus - depenses };
   }, [finances]);
 
-  const focusTasks = tasks.slice(0, 3);
-  const topSkill = skills[0];
+  const getTaskStatus = (task: typeof tasks[0]) => {
+    if (task.done) return { label: "Terminé", className: "bg-primary/20 text-primary" };
+    if (task.urgent) return { label: "En cours", className: "bg-warning/20 text-warning" };
+    return { label: "A faire", className: "bg-muted text-muted-foreground" };
+  };
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">{greeting} 👋</h1>
-          <p className="text-sm text-muted-foreground">
-            {now.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}
+    <div className="flex-1 p-8 overflow-y-auto">
+      {/* Header */}
+      <header className="flex justify-between items-end mb-10 animate-fade-in">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-4xl font-bold tracking-tight text-foreground capitalize">{greeting} {userName}</h2>
+          <p className="text-muted-foreground font-medium">
+            {now.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
           </p>
         </div>
-        <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5">
-          <Flame size={16} className="text-warning" />
-          <span className="text-xs text-muted-foreground">streak</span>
+        <div className="flex items-center bg-card px-4 py-2 rounded-full shadow-sm border border-border gap-2">
+          <Flame size={18} className="text-warning" />
+          <span className="font-bold text-sm">7 jours streak</span>
+        </div>
+      </header>
+
+      {/* Objectifs */}
+      <section className="mb-10 animate-fade-in" style={{ animationDelay: "60ms" }}>
+        <h3 className="text-xl font-bold mb-5 flex items-center gap-2">
+          Mes objectifs <span className="w-2 h-2 rounded-full bg-primary"></span>
+        </h3>
+        <div className="grid grid-cols-3 gap-6">
+          {goals.length === 0 ? (
+            <div className="col-span-3 bg-card p-6 rounded-xl shadow-sm border border-border text-center">
+              <p className="text-sm text-muted-foreground">Aucun objectif. <Link to="/organisation" className="text-primary font-medium">En ajouter</Link></p>
+            </div>
+          ) : (
+            goals.map((g, i) => {
+              const Icon = goalIcons[i % goalIcons.length];
+              return (
+                <div key={g.id} className="bg-card p-6 rounded-xl shadow-sm border border-border flex flex-col gap-4">
+                  <div className="flex justify-between items-start">
+                    <span className="text-5xl font-black text-primary/20">{String(i + 1).padStart(2, "0")}</span>
+                    <Icon size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-foreground">{g.name}</h4>
+                    <p className="text-xs text-muted-foreground mb-3">{g.target_date ? `Échéance : ${new Date(g.target_date).toLocaleDateString("fr-FR")}` : ""}</p>
+                    <div className="w-full bg-primary/10 h-2 rounded-full">
+                      <div className="bg-primary h-full rounded-full transition-all" style={{ width: `${g.progress}%` }}></div>
+                    </div>
+                    <span className="text-[10px] font-bold text-primary mt-1 block">{g.progress}% complété</span>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </section>
+
+      {/* Main Grid */}
+      <div className="grid grid-cols-12 gap-6 mb-10 animate-fade-in" style={{ animationDelay: "120ms" }}>
+        {/* Left Col */}
+        <div className="col-span-7 flex flex-col gap-6">
+          {/* Focus du jour */}
+          <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-lg font-bold">Focus du jour</h3>
+              <Link to="/organisation" className="text-primary text-xs font-bold uppercase tracking-wider">Editer</Link>
+            </div>
+            {focusTasks.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Aucune tâche aujourd'hui. <Link to="/organisation" className="text-primary font-medium">En ajouter</Link></p>
+            ) : (
+              <div className="flex flex-col gap-3">
+                {focusTasks.map((t) => {
+                  const status = getTaskStatus(t);
+                  return (
+                    <div key={t.id} className={`flex items-center justify-between p-3 rounded-lg border ${t.done ? "bg-primary/5 border-primary/10" : "border-border"}`}>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 size={20} className={t.done ? "text-primary" : "text-muted-foreground/40"} />
+                        <span className={`font-medium text-sm ${t.done ? "line-through text-muted-foreground" : "text-foreground"}`}>{t.text}</span>
+                      </div>
+                      <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase ${status.className}`}>{status.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Contenu en attente */}
+          <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+            <h3 className="text-lg font-bold mb-4">Contenu en attente</h3>
+            {contentItems.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Aucun contenu en attente.</p>
+            ) : (
+              <div className="space-y-3">
+                {contentItems.map((item, i) => (
+                  <div key={item.id} className={`flex items-center gap-4 ${i < contentItems.length - 1 ? "border-b border-border pb-3" : ""}`}>
+                    <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center">
+                      <BookOpen size={20} className="text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-bold text-sm text-foreground">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">Statut : {item.status}</p>
+                    </div>
+                    <span className="text-xs font-medium text-muted-foreground">
+                      {new Date(item.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Col */}
+        <div className="col-span-5 flex flex-col gap-6">
+          {/* Projets actifs */}
+          <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+            <h3 className="text-lg font-bold mb-6">Projets actifs</h3>
+            {projects.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Aucun projet actif.</p>
+            ) : (
+              <div className="flex flex-col gap-5">
+                {projects.map((p) => (
+                  <div key={p.id}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-bold text-foreground">{p.name}</span>
+                      <span className="text-xs font-bold text-primary">{p.progress}%</span>
+                    </div>
+                    <div className="w-full bg-primary/10 h-1.5 rounded-full">
+                      <div className="bg-primary h-full rounded-full transition-all" style={{ width: `${p.progress}%` }}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Compétence en cours - green card */}
+          {topSkill ? (
+            <div className="bg-primary text-primary-foreground p-6 rounded-xl shadow-sm flex items-center justify-between">
+              <div>
+                <h3 className="text-primary-foreground/70 text-xs font-bold uppercase tracking-wider mb-1">En cours</h3>
+                <p className="text-xl font-bold mb-4">{topSkill.name}</p>
+                <Link to="/skills" className="bg-card text-primary text-xs font-bold px-4 py-2 rounded-full hover:bg-card/90 transition-colors">
+                  Continuer
+                </Link>
+              </div>
+              <div className="relative w-20 h-20">
+                <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="16" fill="none" stroke="hsl(var(--primary-foreground) / 0.2)" strokeWidth="4" />
+                  <circle cx="18" cy="18" r="16" fill="none" stroke="white" strokeWidth="4"
+                    strokeDasharray={`${(topSkill.progress / 100) * 100.5} 100.5`} strokeLinecap="round" />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm font-bold">{topSkill.progress}%</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-primary text-primary-foreground p-6 rounded-xl shadow-sm text-center">
+              <p className="text-sm opacity-70">Aucune compétence en cours.</p>
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="grid flex-1 grid-cols-4 grid-rows-3 gap-4 overflow-hidden">
-        {/* Goals */}
-        <DashboardWidget title="Objectifs long terme" icon={<Target size={14} />} className="col-span-2" delay={0}>
-          {goals.length === 0 ? (
-            <p className="text-xs text-muted-foreground">Aucun objectif. <Link to="/organisation" className="text-primary">En ajouter</Link></p>
-          ) : (
-            <div className="space-y-3">
-              {goals.map((g) => (
-                <div key={g.id}>
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className="text-sm text-foreground">{g.name}</span>
-                    <span className="text-xs text-muted-foreground">{g.progress}%</span>
-                  </div>
-                  <Progress value={g.progress} className="h-1.5" />
-                </div>
-              ))}
+      {/* Secondary Grid */}
+      <div className="grid grid-cols-3 gap-6 mb-10 animate-fade-in" style={{ animationDelay: "180ms" }}>
+        {/* Santé du jour */}
+        <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+          <h3 className="text-lg font-bold mb-4">Santé du jour</h3>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-primary/5 p-3 rounded-lg flex flex-col items-center gap-1">
+              <Footprints size={20} className="text-primary" />
+              <span className="text-xs font-bold text-foreground">{todayHealth?.steps ? `${(todayHealth.steps / 1000).toFixed(1)}k` : "0"}</span>
             </div>
-          )}
-        </DashboardWidget>
-
-        {/* Focus */}
-        <DashboardWidget title="Focus du jour" icon={<Zap size={14} />} className="col-span-2" delay={1}>
-          {focusTasks.length === 0 ? (
-            <p className="text-xs text-muted-foreground">Aucune tâche aujourd'hui. <Link to="/organisation" className="text-primary">En ajouter</Link></p>
-          ) : (
-            <div className="space-y-2">
-              {focusTasks.map((t) => (
-                <div key={t.id} className="flex items-center gap-2.5">
-                  {t.done ? <CheckCircle2 size={16} className="text-success shrink-0" /> : <Circle size={16} className="text-muted-foreground shrink-0" />}
-                  <span className={`text-sm ${t.done ? "text-muted-foreground line-through" : "text-foreground"}`}>{t.text}</span>
-                  {t.urgent && !t.done && (
-                    <span className="ml-auto shrink-0 rounded bg-destructive/15 px-1.5 py-0.5 text-[10px] font-medium text-destructive">Urgent</span>
-                  )}
-                </div>
-              ))}
+            <div className="bg-secondary p-3 rounded-lg flex flex-col items-center gap-1">
+              <Droplets size={20} className="text-primary" />
+              <span className="text-xs font-bold text-foreground">{((todayHealth?.water_ml ?? 0) / 1000).toFixed(1)}L</span>
             </div>
-          )}
-        </DashboardWidget>
-
-        {/* Projects */}
-        <DashboardWidget title="Projets actifs" icon={<FolderKanban size={14} />} delay={2}>
-          {projects.length === 0 ? (
-            <p className="text-xs text-muted-foreground">Aucun projet actif.</p>
-          ) : (
-            <div className="space-y-3">
-              {projects.map((p) => (
-                <div key={p.id}>
-                  <div className="mb-1 flex justify-between">
-                    <span className="text-xs text-foreground truncate">{p.name}</span>
-                    <span className="text-[10px] text-muted-foreground">{p.progress}%</span>
-                  </div>
-                  <Progress value={p.progress} className="h-1" />
-                </div>
-              ))}
-            </div>
-          )}
-        </DashboardWidget>
-
-        {/* Health */}
-        <DashboardWidget title="Santé du jour" icon={<Heart size={14} />} delay={3}>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="text-center">
-              <Footprints size={14} className="mx-auto mb-1 text-muted-foreground" />
-              <p className="text-sm font-semibold text-foreground">{todayHealth?.steps ?? 0}</p>
-              <p className="text-[10px] text-muted-foreground">Pas</p>
-            </div>
-            <div className="text-center">
-              <Droplets size={14} className="mx-auto mb-1 text-muted-foreground" />
-              <p className="text-sm font-semibold text-foreground">{((todayHealth?.water_ml ?? 0) / 1000).toFixed(1)}L</p>
-              <p className="text-[10px] text-muted-foreground">Eau</p>
-            </div>
-            <div className="text-center">
-              <Dumbbell size={14} className="mx-auto mb-1 text-muted-foreground" />
-              <p className="text-sm font-semibold text-foreground">{todayHealth?.sport_done ? "✓" : "—"}</p>
-              <p className="text-[10px] text-muted-foreground">Sport</p>
-            </div>
-            <div className="text-center">
-              <Heart size={14} className="mx-auto mb-1 text-muted-foreground" />
-              <p className="text-sm font-semibold text-foreground">{todayHealth?.sleep_hours ?? "—"}h</p>
-              <p className="text-[10px] text-muted-foreground">Sommeil</p>
+            <div className="bg-secondary p-3 rounded-lg flex flex-col items-center gap-1">
+              <Dumbbell size={20} className="text-warning" />
+              <span className="text-xs font-bold text-foreground">{todayHealth?.sport_duration_min ? `${todayHealth.sport_duration_min}m` : "—"}</span>
             </div>
           </div>
-        </DashboardWidget>
+        </div>
 
-        {/* Skills */}
-        <DashboardWidget title="Compétence en cours" icon={<GraduationCap size={14} />} delay={4}>
+        {/* Compétence */}
+        <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+          <h3 className="text-lg font-bold mb-4">Compétence</h3>
           {topSkill ? (
-            <div className="text-center">
-              <div className="relative mx-auto mb-2 h-16 w-16">
-                <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64">
-                  <circle cx="32" cy="32" r="28" fill="none" stroke="hsl(var(--border))" strokeWidth="4" />
-                  <circle cx="32" cy="32" r="28" fill="none" stroke="hsl(var(--primary))" strokeWidth="4"
-                    strokeDasharray={`${(topSkill.progress / 100) * 175.9} 175.9`} strokeLinecap="round" />
-                </svg>
-                <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-foreground">{topSkill.progress}%</span>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <Target size={20} className="text-primary" />
               </div>
-              <p className="text-sm font-medium text-foreground">{topSkill.name}</p>
-              <p className="text-[10px] text-muted-foreground">{topSkill.level} · {topSkill.total_hours}h</p>
+              <div>
+                <p className="text-sm font-bold text-foreground">{topSkill.name}</p>
+                <p className="text-xs text-muted-foreground">{topSkill.level} · {topSkill.total_hours}h</p>
+              </div>
             </div>
           ) : (
-            <p className="text-xs text-muted-foreground text-center">Aucune compétence.</p>
+            <p className="text-sm text-muted-foreground">Aucune compétence.</p>
           )}
-        </DashboardWidget>
+        </div>
 
         {/* Finances */}
-        <DashboardWidget title="Finances du mois" icon={<Wallet size={14} />} delay={5}>
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <span className="text-xs text-muted-foreground">Revenus</span>
-              <span className="text-sm font-semibold text-success">+{monthFinances.revenus.toLocaleString()}€</span>
+        <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+          <h3 className="text-lg font-bold mb-4">Finances</h3>
+          <div className="flex items-end justify-between">
+            <div>
+              <p className="text-xs text-muted-foreground font-medium">Solde actuel</p>
+              <p className="text-2xl font-black text-foreground">{monthFinances.solde.toLocaleString()} €</p>
             </div>
-            <div className="flex justify-between">
-              <span className="text-xs text-muted-foreground">Dépenses</span>
-              <span className="text-sm font-semibold text-destructive">-{monthFinances.depenses.toLocaleString()}€</span>
-            </div>
-            <div className="border-t border-border pt-2 flex justify-between">
-              <span className="text-xs text-muted-foreground">Solde</span>
-              <span className="text-sm font-bold text-foreground">+{(monthFinances.revenus - monthFinances.depenses).toLocaleString()}€</span>
-            </div>
+            {monthFinances.revenus > 0 && (
+              <div className="text-primary flex items-center text-xs font-bold">
+                <ArrowUpRight size={14} /> {Math.round((monthFinances.solde / monthFinances.revenus) * 100)}%
+              </div>
+            )}
           </div>
-        </DashboardWidget>
-
-        {/* Content queue */}
-        <DashboardWidget title="Contenu en attente" icon={<BookMarked size={14} />} delay={6}>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">En file d'attente</span>
-              <span className="text-sm font-semibold text-foreground">{contentItems.length}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">Highlights à traiter</span>
-              <span className="text-sm font-semibold text-warning">{highlights.length}</span>
-            </div>
-          </div>
-        </DashboardWidget>
-
-        {/* Quick Links */}
-        <DashboardWidget title="Accès rapide" icon={<TrendingUp size={14} />} className="col-span-3" delay={7}>
-          <div className="flex gap-2">
-            {quickLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="flex flex-1 items-center justify-center gap-2 rounded-md border border-border bg-secondary/50 py-2 text-xs text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary"
-              >
-                <link.icon size={14} />
-                <span>{link.label}</span>
-                <ChevronRight size={12} />
-              </Link>
-            ))}
-          </div>
-        </DashboardWidget>
+        </div>
       </div>
+
+      {/* Bottom Quick Actions */}
+      <footer className="flex flex-wrap gap-4 justify-center pb-10 animate-fade-in" style={{ animationDelay: "240ms" }}>
+        {[
+          { label: "Voir toutes les tâches", path: "/organisation" },
+          { label: "Nouveau projet", path: "/organisation" },
+          { label: "Bilan hebdomadaire", path: "/organisation" },
+          { label: "Accéder aux compétences", path: "/skills" },
+        ].map((btn) => (
+          <Link
+            key={btn.label}
+            to={btn.path}
+            className="bg-card px-6 py-2.5 rounded-full text-sm font-bold border border-border shadow-sm hover:bg-primary hover:text-primary-foreground transition-all"
+          >
+            {btn.label}
+          </Link>
+        ))}
+      </footer>
     </div>
   );
 }
