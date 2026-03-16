@@ -1,8 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
-import { Footprints, Droplets, Dumbbell, Moon, Plus, Minus, Flame } from "lucide-react";
+import { Footprints, Droplets, Dumbbell, Moon, Plus, Flame, Zap, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
 import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -41,8 +39,7 @@ export default function Health() {
   }, [user, todayLog, today, refetch]);
 
   const addWater = useCallback((ml: number) => {
-    const current = todayLog?.water_ml || 0;
-    updateTodayLog({ water_ml: Math.max(0, current + ml) });
+    updateTodayLog({ water_ml: Math.max(0, (todayLog?.water_ml || 0) + ml) });
   }, [todayLog, updateTodayLog]);
 
   const toggleSport = useCallback(() => {
@@ -53,99 +50,181 @@ export default function Health() {
   const stepsPct = Math.min(100, ((todayLog?.steps || 0) / goals.steps_goal) * 100);
   const sleepPct = Math.min(100, ((Number(todayLog?.sleep_hours) || 0) / Number(goals.sleep_goal_hours)) * 100);
 
+  // Calculate streak
+  const streak = useMemo(() => {
+    let count = 0;
+    const sorted = [...healthLogs].sort((a, b) => b.log_date.localeCompare(a.log_date));
+    for (const log of sorted) {
+      if (log.steps && log.steps > 0) count++;
+      else break;
+    }
+    return count;
+  }, [healthLogs]);
+
+  // Global progress
+  const globalPct = Math.round(((stepsPct + waterPct + sleepPct + (todayLog?.sport_done ? 100 : 0)) / 4));
+
+  // Week data for bar chart
   const weekData = useMemo(() => {
     return healthLogs.slice(0, 7).reverse().map(l => ({
       day: new Date(l.log_date).toLocaleDateString("fr-FR", { weekday: "short" }),
       steps: l.steps || 0,
       sleep: Number(l.sleep_hours) || 0,
+      pct: Math.min(100, ((l.steps || 0) / goals.steps_goal) * 100),
     }));
-  }, [healthLogs]);
+  }, [healthLogs, goals]);
 
-  const metrics = [
-    { icon: Footprints, label: "Pas", value: (todayLog?.steps || 0).toLocaleString(), goal: goals.steps_goal.toLocaleString(), pct: stepsPct },
-    { icon: Droplets, label: "Eau", value: `${((todayLog?.water_ml || 0) / 1000).toFixed(1)}L`, goal: `${(goals.water_goal_ml / 1000).toFixed(1)}L`, pct: waterPct },
-    { icon: Dumbbell, label: "Sport", value: todayLog?.sport_done ? "Fait ✓" : "À faire", goal: "1 session", pct: todayLog?.sport_done ? 100 : 0 },
-    { icon: Moon, label: "Sommeil", value: `${todayLog?.sleep_hours || "—"}h`, goal: `${goals.sleep_goal_hours}h`, pct: sleepPct },
-  ];
+  const dayLabels = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 
   return (
-    <div className="flex h-screen flex-col overflow-auto p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-foreground">Santé</h1>
-      </div>
-
-      <div className="mb-6 grid grid-cols-4 gap-4">
-        {metrics.map(m => (
-          <div key={m.label} className="rounded-lg border border-border bg-card p-4">
-            <div className="mb-3 flex items-center gap-2">
-              <m.icon size={18} className="text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">{m.label}</span>
+    <div className="flex h-screen flex-col overflow-auto p-8">
+      {/* Header */}
+      <header className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-black text-foreground">Santé</h1>
+          <p className="text-muted-foreground font-medium">Voici vos statistiques pour aujourd'hui</p>
+        </div>
+        <div className="flex items-center gap-3">
+          {streak > 0 && (
+            <div className="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-full shadow-sm">
+              <Flame size={18} className="text-amber-500" />
+              <span className="font-bold text-foreground">{streak}j streak</span>
             </div>
-            <p className="text-2xl font-bold text-foreground">{m.value}</p>
-            <p className="mb-2 text-[10px] text-muted-foreground">Objectif : {m.goal}</p>
-            <Progress value={m.pct} className="h-1.5" />
+          )}
+          <Button className="bg-primary text-primary-foreground rounded-full font-bold shadow-md gap-2">
+            <Plus size={18} /> Log du jour
+          </Button>
+        </div>
+      </header>
+
+      {/* Metrics Grid */}
+      <div className="grid grid-cols-3 gap-6 mb-8">
+        {/* Steps */}
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-blue-50 rounded-xl text-blue-600"><Footprints size={22} /></div>
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-tighter">Objectif {goals.steps_goal.toLocaleString()}</span>
           </div>
-        ))}
-      </div>
+          <h3 className="text-muted-foreground text-sm font-medium mb-1">Pas effectués</h3>
+          <p className="text-3xl font-bold text-foreground">{(todayLog?.steps || 0).toLocaleString()}</p>
+          <div className="mt-4 h-2 bg-secondary rounded-full overflow-hidden">
+            <div className="h-full bg-blue-500 rounded-full transition-all" style={{ width: `${stepsPct}%` }} />
+          </div>
+        </div>
 
-      <div className="mb-6 flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3">
-        <Droplets size={18} className="text-primary" />
-        <span className="text-sm text-foreground">Eau : {((todayLog?.water_ml || 0) / 1000).toFixed(1)}L / {(goals.water_goal_ml / 1000).toFixed(1)}L</span>
-        <div className="ml-auto flex gap-2">
-          <Button size="sm" variant="outline" className="text-xs h-7" onClick={() => addWater(-250)}>
-            <Minus size={12} /> 250ml
-          </Button>
-          <Button size="sm" variant="outline" className="text-xs h-7" onClick={() => addWater(250)}>
-            <Plus size={12} /> 250ml
-          </Button>
-          <Button size="sm" variant="outline" className="text-xs h-7" onClick={() => addWater(500)}>
-            <Plus size={12} /> 500ml
-          </Button>
+        {/* Hydration */}
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-cyan-50 rounded-xl text-cyan-600"><Droplets size={22} /></div>
+            <div className="flex gap-1">
+              <button onClick={() => addWater(250)} className="text-[10px] bg-cyan-100 text-cyan-700 px-2 py-1 rounded-md font-bold hover:bg-cyan-200 transition-colors">+250ml</button>
+              <button onClick={() => addWater(500)} className="text-[10px] bg-cyan-100 text-cyan-700 px-2 py-1 rounded-md font-bold hover:bg-cyan-200 transition-colors">+500ml</button>
+            </div>
+          </div>
+          <h3 className="text-muted-foreground text-sm font-medium mb-1">Hydratation</h3>
+          <p className="text-3xl font-bold text-foreground">{(todayLog?.water_ml || 0).toLocaleString()} ml</p>
+          <div className="mt-4 h-2 bg-secondary rounded-full overflow-hidden">
+            <div className="h-full bg-cyan-500 rounded-full transition-all" style={{ width: `${waterPct}%` }} />
+          </div>
+        </div>
+
+        {/* Sport */}
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-emerald-50 rounded-xl text-emerald-600"><Dumbbell size={22} /></div>
+            <button
+              onClick={toggleSport}
+              className={`text-[10px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider transition-colors ${
+                todayLog?.sport_done ? "bg-primary text-primary-foreground" : "bg-emerald-600 text-white hover:bg-emerald-700"
+              }`}
+            >
+              {todayLog?.sport_done ? "✓ Validé" : "Valider"}
+            </button>
+          </div>
+          <h3 className="text-muted-foreground text-sm font-medium mb-1">Session Sport</h3>
+          <p className="text-xl font-bold text-foreground">{todayLog?.sport_done ? "Session validée ✓" : "En attente"}</p>
+          <p className="text-xs text-muted-foreground mt-2 font-medium">Objectif : {goals.sport_sessions_goal} session/jour</p>
+        </div>
+
+        {/* Sleep */}
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-indigo-50 rounded-xl text-indigo-600"><Moon size={22} /></div>
+          </div>
+          <h3 className="text-muted-foreground text-sm font-medium mb-1">Sommeil</h3>
+          <p className="text-3xl font-bold text-foreground">{todayLog?.sleep_hours ? `${todayLog.sleep_hours}h` : "—"}</p>
+          <div className="mt-4 h-2 bg-secondary rounded-full overflow-hidden">
+            <div className="h-full bg-indigo-500 rounded-full transition-all" style={{ width: `${sleepPct}%` }} />
+          </div>
+        </div>
+
+        {/* Streak */}
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-amber-50 rounded-xl text-amber-600"><Zap size={22} /></div>
+            <Award size={20} className="text-amber-300" />
+          </div>
+          <h3 className="text-muted-foreground text-sm font-medium mb-1">Streak Actuel</h3>
+          <p className="text-3xl font-bold text-foreground">{streak} jours</p>
+          <p className="text-xs text-muted-foreground mt-2 font-medium">Continuez comme ça !</p>
+        </div>
+
+        {/* Global Progress */}
+        <div className="bg-primary p-6 rounded-2xl border border-primary shadow-lg text-primary-foreground">
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-white/20 rounded-xl"><Award size={22} /></div>
+          </div>
+          <h3 className="text-primary-foreground/70 text-sm font-medium mb-1">Progression Globale</h3>
+          <p className="text-3xl font-bold">{globalPct}%</p>
+          <p className="text-xs text-primary-foreground/80 mt-2 font-medium">En route vers vos objectifs hebdo</p>
         </div>
       </div>
 
-      <div className="mb-6 flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3">
-        <Dumbbell size={18} className="text-primary" />
-        <span className="text-sm text-foreground">Sport du jour</span>
-        <Button size="sm" variant={todayLog?.sport_done ? "default" : "outline"} className="ml-auto text-xs h-7" onClick={toggleSport}>
-          {todayLog?.sport_done ? "✓ Fait" : "Marquer fait"}
-        </Button>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4 flex-1">
-        <div className="rounded-lg border border-border bg-card p-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Pas — 7 derniers jours</p>
-          <ResponsiveContainer width="100%" height={200}>
-            <AreaChart data={weekData}>
-              <defs>
-                <linearGradient id="stepsGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="hsl(248, 88%, 69%)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="hsl(248, 88%, 69%)" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="day" tick={{ fontSize: 10, fill: "hsl(0,0%,53%)" }} axisLine={false} tickLine={false} />
-              <YAxis hide />
-              <Tooltip contentStyle={{ background: "hsl(0,0%,11%)", border: "1px solid hsl(0,0%,18%)", borderRadius: 8, fontSize: 12 }} />
-              <Area type="monotone" dataKey="steps" stroke="hsl(248, 88%, 69%)" fill="url(#stepsGrad)" strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
+      {/* Charts */}
+      <div className="grid grid-cols-2 gap-6 flex-1">
+        {/* Activity Bar Chart */}
+        <div className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+          <h4 className="font-bold text-lg text-foreground mb-8">Activité & Sommeil (7j)</h4>
+          <div className="relative h-64 flex items-end justify-between gap-2 px-4">
+            {(weekData.length > 0 ? weekData : dayLabels.map(d => ({ day: d, steps: 0, pct: 0, sleep: 0 }))).map((d, i) => (
+              <div key={i} className="flex-1 flex flex-col justify-end gap-1 h-full">
+                <div className="w-full bg-primary/20 rounded-t-lg transition-all" style={{ height: `${Math.max(5, d.pct)}%` }} />
+                <span className="text-[10px] text-center text-muted-foreground font-bold">{d.day}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Sommeil — 7 derniers jours</p>
-          <ResponsiveContainer width="100%" height={200}>
-            <AreaChart data={weekData}>
-              <defs>
-                <linearGradient id="sleepGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="hsl(160, 64%, 52%)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="hsl(160, 64%, 52%)" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="day" tick={{ fontSize: 10, fill: "hsl(0,0%,53%)" }} axisLine={false} tickLine={false} />
-              <YAxis hide />
-              <Tooltip contentStyle={{ background: "hsl(0,0%,11%)", border: "1px solid hsl(0,0%,18%)", borderRadius: 8, fontSize: 12 }} />
-              <Area type="monotone" dataKey="sleep" stroke="hsl(160, 64%, 52%)" fill="url(#sleepGrad)" strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
+
+        {/* Water Chart */}
+        <div className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-center justify-between mb-8">
+            <h4 className="font-bold text-lg text-foreground">Consommation d'eau</h4>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
+                <span className="text-xs font-bold text-muted-foreground">Réel</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-secondary" />
+                <span className="text-xs font-bold text-muted-foreground">Objectif</span>
+              </div>
+            </div>
+          </div>
+          <div className="h-64 flex items-end justify-between px-2">
+            <div className="w-full h-full relative">
+              <div className="absolute inset-0 bg-cyan-50 rounded-xl overflow-hidden">
+                <div className="absolute bottom-0 left-0 right-0 bg-cyan-500/20 transition-all" style={{ height: `${waterPct}%` }}>
+                  <div className="absolute top-0 left-0 right-0 h-4 bg-cyan-500/10 rounded-full blur-sm" />
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-cyan-600">{Math.round(waterPct)}%</p>
+                  <p className="text-sm text-cyan-600/70 font-medium">{((todayLog?.water_ml || 0) / 1000).toFixed(1)}L / {(goals.water_goal_ml / 1000).toFixed(1)}L</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
