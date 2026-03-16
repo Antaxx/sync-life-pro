@@ -216,11 +216,11 @@ export default function Dashboard() {
               <Footprints size={20} className="text-primary" />
               <span className="text-xs font-bold text-foreground">{todayHealth?.steps ? `${(todayHealth.steps / 1000).toFixed(1)}k` : "0"}</span>
             </div>
-            <div className="bg-blue-50 p-3 rounded-lg flex flex-col items-center gap-1">
-              <Droplets size={20} className="text-blue-500" />
+            <div className="bg-secondary p-3 rounded-lg flex flex-col items-center gap-1">
+              <Droplets size={20} className="text-primary" />
               <span className="text-xs font-bold text-foreground">{((todayHealth?.water_ml ?? 0) / 1000).toFixed(1)}L</span>
             </div>
-            <div className="bg-orange-50 p-3 rounded-lg flex flex-col items-center gap-1">
+            <div className="bg-secondary p-3 rounded-lg flex flex-col items-center gap-1">
               <Dumbbell size={20} className="text-warning" />
               <span className="text-xs font-bold text-foreground">{todayHealth?.sport_duration_min ? `${todayHealth.sport_duration_min}m` : "—"}</span>
             </div>
