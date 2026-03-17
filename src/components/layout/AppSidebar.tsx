@@ -30,7 +30,7 @@ export function AppSidebar() {
   const { signOut, user } = useAuth();
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[220px] flex-col border-r border-sidebar-border bg-sidebar justify-between p-4">
+    <aside className="fixed left-0 top-0 z-40 hidden md:flex h-screen w-[220px] flex-col border-r border-sidebar-border bg-sidebar justify-between p-4">
       <div className="flex flex-col gap-8">
         {/* Logo */}
         <div className="flex items-center gap-3 px-2">
