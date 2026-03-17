@@ -9,6 +9,11 @@ import { Flame } from "lucide-react";
 
 export default function Login() {
   const { session, loading: authLoading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   if (authLoading) {
     return (
@@ -21,11 +26,6 @@ export default function Login() {
   if (session) {
     return <Navigate to="/" replace />;
   }
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
