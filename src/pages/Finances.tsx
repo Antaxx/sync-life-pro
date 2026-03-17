@@ -69,14 +69,14 @@ export default function Finances() {
   }, [filtered]);
 
   return (
-    <div className="flex h-screen flex-col overflow-auto p-6">
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-foreground">Finances</h1>
+    <div className="flex h-screen flex-col overflow-auto p-4 md:p-6">
+      <div className="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <h1 className="text-xl md:text-2xl font-bold text-foreground">Finances</h1>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
             <Button size="sm" variant="outline" className="gap-1.5 text-xs"><Plus size={14} /> Transaction</Button>
           </DialogTrigger>
-          <DialogContent className="bg-card border-border">
+          <DialogContent className="bg-card border-border mx-4">
             <DialogHeader><DialogTitle>Nouvelle transaction</DialogTitle></DialogHeader>
             <div className="space-y-3">
               <Input placeholder="Nom" value={newName} onChange={e => setNewName(e.target.value)} className="bg-secondary border-none" />
@@ -102,57 +102,57 @@ export default function Finances() {
         </Dialog>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-4 flex gap-2 overflow-x-auto no-scrollbar">
         {[
           { key: "global" as const, icon: Globe, label: "Global" },
           { key: "business" as const, icon: Building2, label: "Business" },
-          { key: "personal" as const, icon: User, label: "Personnel" },
+          { key: "personal" as const, icon: User, label: "Perso" },
         ].map(v => (
           <Button key={v.key} size="sm" variant={view === v.key ? "default" : "outline"}
-            className={`gap-1.5 text-xs ${view === v.key ? "bg-primary text-primary-foreground" : ""}`}
+            className={`gap-1.5 text-xs shrink-0 ${view === v.key ? "bg-primary text-primary-foreground" : ""}`}
             onClick={() => setView(v.key)}>
             <v.icon size={14} /> {v.label}
           </Button>
         ))}
       </div>
 
-      <div className="mb-6 grid grid-cols-4 gap-4">
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-2 mb-1"><TrendingUp size={14} className="text-success" /><span className="text-xs text-muted-foreground">Revenus</span></div>
-          <p className="text-2xl font-bold text-success">+{revenus.toLocaleString()}€</p>
+      <div className="mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="rounded-xl border border-border bg-card p-3 md:p-4">
+          <div className="flex items-center gap-2 mb-1"><TrendingUp size={14} className="text-success" /><span className="text-[10px] md:text-xs text-muted-foreground">Revenus</span></div>
+          <p className="text-lg md:text-2xl font-bold text-success">+{revenus.toLocaleString()}€</p>
         </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-2 mb-1"><TrendingDown size={14} className="text-destructive" /><span className="text-xs text-muted-foreground">Dépenses</span></div>
-          <p className="text-2xl font-bold text-destructive">-{depenses.toLocaleString()}€</p>
+        <div className="rounded-xl border border-border bg-card p-3 md:p-4">
+          <div className="flex items-center gap-2 mb-1"><TrendingDown size={14} className="text-destructive" /><span className="text-[10px] md:text-xs text-muted-foreground">Dépenses</span></div>
+          <p className="text-lg md:text-2xl font-bold text-destructive">-{depenses.toLocaleString()}€</p>
         </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-2 mb-1"><Wallet size={14} className="text-foreground" /><span className="text-xs text-muted-foreground">Solde</span></div>
-          <p className="text-2xl font-bold text-foreground">{(revenus - depenses) >= 0 ? "+" : ""}{(revenus - depenses).toLocaleString()}€</p>
+        <div className="rounded-xl border border-border bg-card p-3 md:p-4">
+          <div className="flex items-center gap-2 mb-1"><Wallet size={14} className="text-foreground" /><span className="text-[10px] md:text-xs text-muted-foreground">Solde</span></div>
+          <p className="text-lg md:text-2xl font-bold text-foreground">{(revenus - depenses) >= 0 ? "+" : ""}{(revenus - depenses).toLocaleString()}€</p>
         </div>
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center gap-2 mb-1"><PiggyBank size={14} className="text-primary" /><span className="text-xs text-muted-foreground">Épargne</span></div>
-          <p className="text-2xl font-bold text-primary">{Math.max(0, revenus - depenses).toLocaleString()}€</p>
+        <div className="rounded-xl border border-border bg-card p-3 md:p-4">
+          <div className="flex items-center gap-2 mb-1"><PiggyBank size={14} className="text-primary" /><span className="text-[10px] md:text-xs text-muted-foreground">Épargne</span></div>
+          <p className="text-lg md:text-2xl font-bold text-primary">{Math.max(0, revenus - depenses).toLocaleString()}€</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 flex-1">
-        <div className="rounded-lg border border-border bg-card p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
+        <div className="rounded-xl border border-border bg-card p-4">
           <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Dépenses par catégorie</p>
           {categoryData.length > 0 ? (
             <>
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={180}>
                 <PieChart>
-                  <Pie data={categoryData} dataKey="value" cx="50%" cy="50%" outerRadius={70} innerRadius={40}>
+                  <Pie data={categoryData} dataKey="value" cx="50%" cy="50%" outerRadius={60} innerRadius={35}>
                     {categoryData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
                   </Pie>
-                  <Tooltip contentStyle={{ background: "hsl(0,0%,11%)", border: "1px solid hsl(0,0%,18%)", borderRadius: 8, fontSize: 12 }} />
+                  <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 }} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="mt-2 space-y-1">
                 {categoryData.map(c => (
                   <div key={c.name} className="flex items-center gap-2 text-xs">
-                    <span className="h-2 w-2 rounded-full" style={{ background: c.color }} />
-                    <span className="text-muted-foreground flex-1">{c.name}</span>
+                    <span className="h-2 w-2 rounded-full shrink-0" style={{ background: c.color }} />
+                    <span className="text-muted-foreground flex-1 truncate">{c.name}</span>
                     <span className="text-foreground">{c.value}€</span>
                   </div>
                 ))}
@@ -161,22 +161,22 @@ export default function Finances() {
           ) : <p className="text-xs text-muted-foreground">Aucune dépense ce mois.</p>}
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4">
           <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Évolution mensuelle</p>
           {monthlyData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={220}>
               <BarChart data={monthlyData}>
-                <XAxis dataKey="month" tick={{ fontSize: 10, fill: "hsl(0,0%,53%)" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 10, fill: "hsl(0,0%,53%)" }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: "hsl(0,0%,11%)", border: "1px solid hsl(0,0%,18%)", borderRadius: 8, fontSize: 12 }} />
-                <Bar dataKey="revenus" fill="hsl(160, 64%, 52%)" radius={[4, 4, 0, 0]} />
+                <XAxis dataKey="month" tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} width={40} />
+                <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 }} />
+                <Bar dataKey="revenus" fill="hsl(150, 63%, 25%)" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="depenses" fill="hsl(0, 84%, 60%)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : <p className="text-xs text-muted-foreground">Pas assez de données.</p>}
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-4 overflow-auto">
+        <div className="rounded-xl border border-border bg-card p-4 overflow-auto">
           <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Transactions récentes</p>
           <div className="space-y-2">
             {monthFiltered.slice(0, 15).map(t => (
@@ -185,10 +185,10 @@ export default function Finances() {
                   <p className="text-xs font-medium text-foreground truncate">{t.name}</p>
                   <p className="text-[10px] text-muted-foreground">{t.category} · {new Date(t.transaction_date).toLocaleDateString("fr-FR")}</p>
                 </div>
-                <span className={`text-sm font-semibold ${t.type === "revenue" ? "text-success" : "text-destructive"}`}>
+                <span className={`text-sm font-semibold shrink-0 ml-2 ${t.type === "revenue" ? "text-success" : "text-destructive"}`}>
                   {t.type === "revenue" ? "+" : "-"}{Number(t.amount).toLocaleString()}€
                 </span>
-                <button onClick={() => removeFinance(t.id)} className="ml-2 text-muted-foreground hover:text-destructive"><Trash2 size={10} /></button>
+                <button onClick={() => removeFinance(t.id)} className="ml-2 text-muted-foreground hover:text-destructive shrink-0"><Trash2 size={10} /></button>
               </div>
             ))}
             {monthFiltered.length === 0 && <p className="text-xs text-muted-foreground">Aucune transaction ce mois.</p>}
