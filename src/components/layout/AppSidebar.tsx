@@ -12,6 +12,8 @@ import {
   LogOut,
   PlusCircle,
   RefreshCw,
+  Youtube,
+  GraduationCap,
 } from "lucide-react";
 
 const navItems = [
@@ -19,10 +21,12 @@ const navItems = [
   { icon: ListChecks, label: "Organisation", path: "/organisation" },
   { icon: BookOpen, label: "Contenu", path: "/content" },
   { icon: Heart, label: "Santé", path: "/health" },
+  { icon: Youtube, label: "YouTube", path: "/youtube" },
   { icon: Briefcase, label: "Business", path: "/business" },
   { icon: Target, label: "Compétences", path: "/skills" },
   { icon: Wallet, label: "Finances", path: "/finances" },
   { icon: Bot, label: "Agents IA", path: "/agents" },
+  { icon: GraduationCap, label: "Cours", path: "/cours" },
 ];
 
 export function AppSidebar() {
@@ -32,7 +36,6 @@ export function AppSidebar() {
   return (
     <aside className="fixed left-0 top-0 z-40 hidden md:flex h-screen w-[220px] flex-col border-r border-sidebar-border bg-sidebar justify-between p-4">
       <div className="flex flex-col gap-8">
-        {/* Logo */}
         <div className="flex items-center gap-3 px-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <RefreshCw size={16} className="text-primary-foreground" />
@@ -40,7 +43,6 @@ export function AppSidebar() {
           <h1 className="text-xl font-bold text-primary tracking-tight">LifeSync</h1>
         </div>
 
-        {/* Navigation */}
         <nav className="flex flex-col gap-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path ||
@@ -63,7 +65,6 @@ export function AppSidebar() {
         </nav>
       </div>
 
-      {/* Bottom */}
       <div className="flex flex-col gap-4">
         <button className="w-full bg-primary text-primary-foreground py-2.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all">
           <PlusCircle size={18} />

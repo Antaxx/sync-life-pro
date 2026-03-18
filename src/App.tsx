@@ -14,6 +14,8 @@ import Business from "./pages/Business";
 import Skills from "./pages/Skills";
 import Finances from "./pages/Finances";
 import Agents from "./pages/Agents";
+import YouTubePage from "./pages/YouTube";
+import CoursPage from "./pages/Cours";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +39,8 @@ const App = () => (
               <Route path="/skills" element={<Skills />} />
               <Route path="/finances" element={<Finances />} />
               <Route path="/agents" element={<Agents />} />
+              <Route path="/youtube" element={<YouTubePage />} />
+              <Route path="/cours" element={<CoursPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
