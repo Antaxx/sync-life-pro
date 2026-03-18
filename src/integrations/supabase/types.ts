@@ -164,6 +164,94 @@ export type Database = {
           },
         ]
       }
+      flashcards: {
+        Row: {
+          answer: string
+          created_at: string
+          difficulty: string
+          id: string
+          next_review: string
+          question: string
+          review_count: number
+          subject_id: string
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          difficulty?: string
+          id?: string
+          next_review?: string
+          question: string
+          review_count?: number
+          subject_id: string
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          difficulty?: string
+          id?: string
+          next_review?: string
+          question?: string
+          review_count?: number
+          subject_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flashcards_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      grades: {
+        Row: {
+          coefficient: number
+          created_at: string
+          date: string
+          grade: number
+          id: string
+          max_grade: number
+          subject_id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          coefficient?: number
+          created_at?: string
+          date?: string
+          grade: number
+          id?: string
+          max_grade?: number
+          subject_id: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          coefficient?: number
+          created_at?: string
+          date?: string
+          grade?: number
+          id?: string
+          max_grade?: number
+          subject_id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grades_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       health_goals: {
         Row: {
           created_at: string
@@ -286,6 +374,53 @@ export type Database = {
             columns: ["content_item_id"]
             isOneToOne: false
             referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      homework: {
+        Row: {
+          created_at: string
+          description: string | null
+          due_date: string
+          id: string
+          status: string
+          subject_id: string
+          title: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          due_date: string
+          id?: string
+          status?: string
+          subject_id: string
+          title: string
+          type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          due_date?: string
+          id?: string
+          status?: string
+          subject_id?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "homework_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
             referencedColumns: ["id"]
           },
         ]
@@ -611,6 +746,53 @@ export type Database = {
         }
         Relationships: []
       }
+      schedule: {
+        Row: {
+          created_at: string
+          day_of_week: number
+          end_time: string
+          id: string
+          recurrent: boolean
+          room: string | null
+          start_time: string
+          subject_id: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week: number
+          end_time: string
+          id?: string
+          recurrent?: boolean
+          room?: string | null
+          start_time: string
+          subject_id: string
+          type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          recurrent?: boolean
+          room?: string | null
+          start_time?: string
+          subject_id?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schedule_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       skill_sessions: {
         Row: {
           created_at: string
@@ -686,6 +868,71 @@ export type Database = {
           progress?: number
           streak_days?: number | null
           total_hours?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_sessions: {
+        Row: {
+          created_at: string
+          duration_minutes: number
+          id: string
+          subject_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_minutes: number
+          id?: string
+          subject_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          subject_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_sessions_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subjects: {
+        Row: {
+          coefficient: number
+          color: string
+          created_at: string
+          id: string
+          name: string
+          teacher: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          coefficient?: number
+          color?: string
+          created_at?: string
+          id?: string
+          name: string
+          teacher?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          coefficient?: number
+          color?: string
+          created_at?: string
+          id?: string
+          name?: string
+          teacher?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -835,12 +1082,308 @@ export type Database = {
         }
         Relationships: []
       }
+      youtube_comments: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          user_id: string
+          video_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          user_id: string
+          video_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+          video_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_comments_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_ideas: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          potential_score: number
+          proposed_by: string
+          title: string
+          voters: string[] | null
+          votes: number
+          workspace_id: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          potential_score?: number
+          proposed_by: string
+          title: string
+          voters?: string[] | null
+          votes?: number
+          workspace_id: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          potential_score?: number
+          proposed_by?: string
+          title?: string
+          voters?: string[] | null
+          votes?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_ideas_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_members: {
+        Row: {
+          email: string | null
+          id: string
+          joined_at: string
+          role: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          email?: string | null
+          id?: string
+          joined_at?: string
+          role?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          email?: string | null
+          id?: string
+          joined_at?: string
+          role?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_members_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_scripts: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          updated_at: string
+          video_id: string
+          word_count: number
+          workspace_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+          video_id: string
+          word_count?: number
+          workspace_id: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+          video_id?: string
+          word_count?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_scripts_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_videos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "youtube_scripts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_tasks: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          done: boolean
+          due_date: string | null
+          id: string
+          priority: string
+          status: string
+          title: string
+          updated_at: string
+          video_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title: string
+          updated_at?: string
+          video_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          done?: boolean
+          due_date?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          video_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_tasks_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_videos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "youtube_tasks_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_videos: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          priority: string
+          publish_date: string | null
+          status: string
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          priority?: string
+          publish_date?: string | null
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          priority?: string
+          publish_date?: string | null
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "youtube_videos_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "youtube_workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      youtube_workspaces: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          name?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_workspace_member: {
+        Args: { _user_id: string; _workspace_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
