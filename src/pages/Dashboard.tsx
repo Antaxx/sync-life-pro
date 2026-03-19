@@ -170,6 +170,47 @@ export default function Dashboard() {
               </div>
             )}
           </div>
+
+          {/* Devoirs & Examens du jour */}
+          <div className="bg-card p-5 md:p-6 rounded-xl shadow-sm border border-border">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-base md:text-lg font-bold flex items-center gap-2">
+                <GraduationCap size={18} className="text-primary" />
+                Devoirs & Examens du jour
+              </h3>
+              <Link to="/cours" className="text-primary text-xs font-bold uppercase tracking-wider">Voir tout</Link>
+            </div>
+            {todayHomework.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Aucun devoir ou examen aujourd'hui. 🎉</p>
+            ) : (
+              <div className="flex flex-col gap-3">
+                {todayHomework.map((h) => {
+                  const subject = subjectMap[h.subject_id];
+                  const isExam = h.type === "exam";
+                  return (
+                    <div key={h.id} className={`flex items-center gap-3 p-3 rounded-lg border ${isExam ? "border-destructive/30 bg-destructive/5" : "border-border"}`}>
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${isExam ? "bg-destructive/10" : "bg-primary/10"}`}>
+                        {isExam ? <AlertTriangle size={16} className="text-destructive" /> : <ClipboardList size={16} className="text-primary" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm text-foreground truncate">{h.title}</p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          {subject && (
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ backgroundColor: subject.color + "20", color: subject.color }}>
+                              {subject.name}
+                            </span>
+                          )}
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded uppercase ${isExam ? "bg-destructive/20 text-destructive" : "bg-muted text-muted-foreground"}`}>
+                            {isExam ? "Examen" : "Devoir"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Right Col */}
