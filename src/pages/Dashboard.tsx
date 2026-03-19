@@ -136,7 +136,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {goals.length === 0 ? (
             <div className="sm:col-span-2 lg:col-span-3 bg-card p-6 rounded-xl shadow-sm border border-border text-center">
-              <p className="text-sm text-muted-foreground">Aucun objectif. <Link to="/organisation" className="text-primary font-medium">En ajouter</Link></p>
+              <p className="text-sm text-muted-foreground">Aucun objectif. <button onClick={() => setShowGoalModal(true)} className="text-primary font-medium">En ajouter</button></p>
             </div>
           ) : (
             goals.map((g, i) => {
