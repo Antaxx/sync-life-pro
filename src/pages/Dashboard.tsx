@@ -31,6 +31,18 @@ export default function Dashboard() {
   const focusTasks = tasks.slice(0, 3);
   const topSkill = skills[0];
 
+  const subjectMap = useMemo(() => {
+    const map: Record<string, typeof subjects[0]> = {};
+    subjects.forEach(s => { map[s.id] = s; });
+    return map;
+  }, [subjects]);
+
+  const todayHomework = useMemo(() => {
+    return homework.filter(h => {
+      return h.due_date === today && h.status !== "done";
+    }).slice(0, 4);
+  }, [homework, today]);
+
   const monthFinances = useMemo(() => {
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
