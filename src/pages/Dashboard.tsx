@@ -79,9 +79,14 @@ export default function Dashboard() {
 
       {/* Objectifs */}
       <section className="mb-8 md:mb-10 animate-fade-in" style={{ animationDelay: "60ms" }}>
-        <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-5 flex items-center gap-2">
-          Mes objectifs <span className="w-2 h-2 rounded-full bg-primary"></span>
-        </h3>
+        <div className="flex items-center justify-between mb-4 md:mb-5">
+          <h3 className="text-lg md:text-xl font-bold flex items-center gap-2">
+            Mes objectifs <span className="w-2 h-2 rounded-full bg-primary"></span>
+          </h3>
+          {goals.length < 3 && (
+            <Link to="/organisation" className="text-primary text-xs font-bold uppercase tracking-wider">+ Ajouter</Link>
+          )}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {goals.length === 0 ? (
             <div className="sm:col-span-2 lg:col-span-3 bg-card p-6 rounded-xl shadow-sm border border-border text-center">
