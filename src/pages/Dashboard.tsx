@@ -21,6 +21,8 @@ export default function Dashboard() {
   const { data: skills } = useSupabaseTable("skills", { limit: 1, orderBy: { column: "last_session_date", ascending: false } });
   const { data: finances } = useSupabaseTable("finances");
   const { data: contentItems } = useSupabaseTable("content_items", { filter: { status: "queue" }, limit: 2 });
+  const { data: homework } = useSupabaseTable("homework");
+  const { data: subjects } = useSupabaseTable("subjects");
 
   const now = new Date();
   const greeting = now.getHours() < 12 ? "Bonjour" : now.getHours() < 18 ? "Bon après-midi" : "Bonsoir";
