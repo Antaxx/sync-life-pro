@@ -3,10 +3,14 @@ import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import {
   TrendingUp, Target, CalendarDays, CheckCircle2, Flame,
   Footprints, Droplets, Dumbbell, BookOpen, ArrowUpRight,
-  GraduationCap, ClipboardList, AlertTriangle,
+  GraduationCap, ClipboardList, AlertTriangle, Plus,
 } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 const goalIcons = [TrendingUp, Target, CalendarDays];
 
