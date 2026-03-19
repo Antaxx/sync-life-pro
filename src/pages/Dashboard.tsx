@@ -128,7 +128,9 @@ export default function Dashboard() {
             Mes objectifs <span className="w-2 h-2 rounded-full bg-primary"></span>
           </h3>
           {goals.length < 3 && (
-            <Link to="/organisation" className="text-primary text-xs font-bold uppercase tracking-wider">+ Ajouter</Link>
+            <button onClick={() => setShowGoalModal(true)} className="text-primary text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+              <Plus size={14} /> Ajouter
+            </button>
           )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
