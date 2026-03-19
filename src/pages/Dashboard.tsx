@@ -59,6 +59,25 @@ export default function Dashboard() {
     return { revenus, depenses, solde: revenus - depenses };
   }, [finances]);
 
+  const [showGoalModal, setShowGoalModal] = useState(false);
+  const [goalName, setGoalName] = useState("");
+  const [goalDate, setGoalDate] = useState("");
+
+  const { insert: insertGoal } = useSupabaseTable("long_term_goals");
+
+  const handleCreateGoal = async () => {
+    if (!goalName.trim()) return;
+    await insertGoal({
+      name: goalName.trim(),
+      target_date: goalDate || null,
+      progress: 0,
+      completed: false,
+    });
+    setGoalName("");
+    setGoalDate("");
+    setShowGoalModal(false);
+  };
+
   const getTaskStatus = (task: typeof tasks[0]) => {
     if (task.done) return { label: "Terminé", className: "bg-primary/20 text-primary" };
     if (task.urgent) return { label: "En cours", className: "bg-warning/20 text-warning" };
@@ -66,6 +85,27 @@ export default function Dashboard() {
   };
 
   return (
+    <>
+    <Dialog open={showGoalModal} onOpenChange={setShowGoalModal}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Nouvel objectif</DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col gap-4 pt-2">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="goal-name">Nom de l'objectif</Label>
+            <Input id="goal-name" placeholder="Ex: Apprendre le piano" value={goalName} onChange={e => setGoalName(e.target.value)} />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="goal-date">Date cible (optionnel)</Label>
+            <Input id="goal-date" type="date" value={goalDate} onChange={e => setGoalDate(e.target.value)} />
+          </div>
+          <Button onClick={handleCreateGoal} disabled={!goalName.trim()} className="w-full mt-2">
+            Créer l'objectif
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
     <div className="flex-1 p-4 md:p-8 overflow-y-auto">
       {/* Header */}
       <header className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-end mb-8 md:mb-10 animate-fade-in">
