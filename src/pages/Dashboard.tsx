@@ -3,6 +3,7 @@ import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import {
   TrendingUp, Target, CalendarDays, CheckCircle2, Flame,
   Footprints, Droplets, Dumbbell, BookOpen, ArrowUpRight,
+  GraduationCap, ClipboardList, AlertTriangle,
 } from "lucide-react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
