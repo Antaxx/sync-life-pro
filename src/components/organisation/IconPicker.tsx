@@ -32,7 +32,7 @@ import {
   Hammer, HardHat, Shovel, Axe, Drill,
   Truck, Tractor, Construction, TrafficCone,
   Anchor, LifeBuoy, Sailboat,
-  Tent, Campfire, Binoculars, Telescope,
+  Tent, Binoculars, Telescope,
   Atom, Dna, FlaskConical, Microscope, TestTube2,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";

@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import { RenderIcon } from "@/components/organisation/IconPicker";
-import { ArrowLeft, CheckCircle2, Circle, Trash2, FolderKanban } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Circle, Trash2, FolderKanban, Target } from "lucide-react";
 import { useCallback, useMemo } from "react";
 
 export default function LifeBucketDetail() {
