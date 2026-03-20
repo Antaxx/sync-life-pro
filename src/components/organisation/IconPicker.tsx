@@ -71,7 +71,7 @@ export const ICON_MAP: Record<string, React.ComponentType<any>> = {
   Hammer, HardHat, Shovel, Axe, Drill,
   Truck, Tractor, Construction, TrafficCone,
   Anchor, LifeBuoy, Sailboat,
-  Tent, Campfire, Binoculars, Telescope,
+  Tent, Binoculars, Telescope,
   Atom, Dna, FlaskConical, Microscope, TestTube2,
 };
 
