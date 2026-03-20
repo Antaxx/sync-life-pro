@@ -8,6 +8,8 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AppLayout } from "@/components/layout/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Organisation from "./pages/Organisation";
+import LifeBucketDetail from "./pages/LifeBucketDetail";
+import LifeBucketAnalyse from "./pages/LifeBucketAnalyse";
 import Content from "./pages/Content";
 import Health from "./pages/Health";
 
@@ -33,6 +35,8 @@ const App = () => (
             <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/organisation" element={<Organisation />} />
+              <Route path="/organisation/bucket/:id" element={<LifeBucketDetail />} />
+              <Route path="/organisation/analyse" element={<LifeBucketAnalyse />} />
               <Route path="/content" element={<Content />} />
               <Route path="/health" element={<Health />} />
               

@@ -1,11 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import { Plus, Zap, Brain, Clock, CheckCircle2, Circle, ArrowUpRight, Trash2, ChevronDown, ChevronRight, CalendarDays, FolderKanban, Layers } from "lucide-react";
+import { Plus, Zap, Brain, Clock, CheckCircle2, Circle, ArrowUpRight, Trash2, ChevronDown, ChevronRight, CalendarDays, FolderKanban, Layers, BarChart3, Pencil, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router-dom";
+import { IconPicker, RenderIcon } from "@/components/organisation/IconPicker";
 
 export default function Organisation() {
   const today = new Date().toISOString().split("T")[0];
@@ -13,7 +16,7 @@ export default function Organisation() {
     realtime: true,
     orderBy: { column: "sort_order", ascending: true },
   });
-  const { data: lifeBuckets } = useSupabaseTable("life_buckets");
+  const { data: lifeBuckets, insert: insertBucket, update: updateBucket, remove: removeBucket } = useSupabaseTable("life_buckets", { orderBy: { column: "sort_order", ascending: true } });
   const { data: projects } = useSupabaseTable("projects", { filter: { status: "active" } });
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -262,31 +265,142 @@ export default function Organisation() {
         </div>
 
         {/* LIFE BUCKETS */}
-        <div className="bg-card rounded-2xl shadow-sm overflow-hidden">
-          <button onClick={() => toggle("buckets")} className="flex items-center justify-between p-4 md:p-6 w-full hover:bg-secondary/50 transition-colors">
-            <div className="flex items-center gap-3">
-              {openSections.buckets ? <ChevronDown size={20} className="text-primary" /> : <ChevronRight size={20} className="text-muted-foreground" />}
-              <h3 className="text-base md:text-lg font-bold tracking-wide text-foreground uppercase">Life Buckets</h3>
-            </div>
-            <Layers size={20} className="text-muted-foreground" />
-          </button>
-          {openSections.buckets && (
-            <div className="p-4 md:p-6 border-t border-border bg-secondary/20">
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
-                {lifeBuckets.map(b => (
-                  <div key={b.id} className="flex flex-col items-center gap-2 p-3 md:p-4 bg-card rounded-2xl shadow-sm border border-border">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: b.color + "20" }}>
-                      <span className="text-base md:text-lg" style={{ color: b.color }}>●</span>
-                    </div>
-                    <span className="text-[10px] md:text-xs font-bold text-foreground text-center">{b.name}</span>
-                  </div>
-                ))}
-                {lifeBuckets.length === 0 && <p className="text-sm text-muted-foreground col-span-3 sm:col-span-4 md:col-span-6">Aucun bucket.</p>}
-              </div>
-            </div>
-          )}
-        </div>
+        <LifeBucketsSection
+          lifeBuckets={lifeBuckets}
+          openSections={openSections}
+          toggle={toggle}
+          insertBucket={insertBucket}
+          updateBucket={updateBucket}
+          removeBucket={removeBucket}
+        />
       </div>
     </div>
+  );
+}
+
+function LifeBucketsSection({ lifeBuckets, openSections, toggle, insertBucket, updateBucket, removeBucket }: any) {
+  const [showCreate, setShowCreate] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("#1a6b3a");
+  const [icon, setIcon] = useState("Home");
+
+  const COLORS = ["#1a6b3a", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316", "#6366f1", "#14b8a6"];
+
+  const startCreate = () => {
+    setEditId(null);
+    setName("");
+    setColor("#1a6b3a");
+    setIcon("Home");
+    setShowCreate(true);
+  };
+
+  const startEdit = (b: any) => {
+    setEditId(b.id);
+    setName(b.name);
+    setColor(b.color);
+    setIcon(b.icon || "CircleDot");
+    setShowCreate(true);
+  };
+
+  const handleSave = async () => {
+    if (!name.trim()) return;
+    if (editId) {
+      await updateBucket(editId, { name: name.trim(), color, icon });
+    } else {
+      await insertBucket({ name: name.trim(), color, icon, sort_order: lifeBuckets.length });
+    }
+    setShowCreate(false);
+  };
+
+  return (
+    <>
+      <Dialog open={showCreate} onOpenChange={setShowCreate}>
+        <DialogContent className="bg-card border-border mx-4 max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{editId ? "Modifier le domaine" : "Nouveau domaine de vie"}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label>Nom</Label>
+              <Input placeholder="Ex: Santé, Carrière, Famille..." value={name} onChange={e => setName(e.target.value)} className="bg-secondary border-none mt-1" />
+            </div>
+            <div>
+              <Label>Couleur</Label>
+              <div className="flex gap-2 mt-2 flex-wrap">
+                {COLORS.map(c => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setColor(c)}
+                    className={`w-8 h-8 rounded-full transition-transform ${color === c ? "ring-2 ring-offset-2 ring-primary scale-110" : "hover:scale-105"}`}
+                    style={{ backgroundColor: c }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div>
+              <Label>Icône</Label>
+              <div className="mt-2">
+                <IconPicker value={icon} onChange={setIcon} color={color} />
+              </div>
+            </div>
+            <Button className="w-full" onClick={handleSave} disabled={!name.trim()}>
+              {editId ? "Enregistrer" : "Créer"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <div className="bg-card rounded-2xl shadow-sm overflow-hidden">
+        <button onClick={() => toggle("buckets")} className="flex items-center justify-between p-4 md:p-6 w-full hover:bg-secondary/50 transition-colors">
+          <div className="flex items-center gap-3">
+            {openSections.buckets ? <ChevronDown size={20} className="text-primary" /> : <ChevronRight size={20} className="text-muted-foreground" />}
+            <h3 className="text-base md:text-lg font-bold tracking-wide text-foreground uppercase">Life Buckets</h3>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/organisation/analyse"
+              onClick={e => e.stopPropagation()}
+              className="text-xs font-bold text-primary flex items-center gap-1 hover:underline"
+            >
+              <BarChart3 size={14} /> Analyse
+            </Link>
+            <Layers size={20} className="text-muted-foreground" />
+          </div>
+        </button>
+        {openSections.buckets && (
+          <div className="p-4 md:p-6 border-t border-border bg-secondary/20">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+              {lifeBuckets.map((b: any) => (
+                <div key={b.id} className="group relative flex flex-col items-center gap-2 p-3 md:p-4 bg-card rounded-2xl shadow-sm border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 flex gap-0.5 transition-opacity">
+                    <button onClick={() => startEdit(b)} className="p-1 rounded-md hover:bg-secondary text-muted-foreground hover:text-foreground">
+                      <Pencil size={12} />
+                    </button>
+                    <button onClick={() => removeBucket(b.id)} className="p-1 rounded-md hover:bg-destructive/10 text-muted-foreground hover:text-destructive">
+                      <X size={12} />
+                    </button>
+                  </div>
+                  <Link to={`/organisation/bucket/${b.id}`} className="flex flex-col items-center gap-2 w-full">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: b.color + "20" }}>
+                      <RenderIcon name={b.icon || "CircleDot"} size={22} color={b.color} />
+                    </div>
+                    <span className="text-[11px] md:text-xs font-bold text-foreground text-center leading-tight">{b.name}</span>
+                  </Link>
+                </div>
+              ))}
+              <button
+                onClick={startCreate}
+                className="flex flex-col items-center justify-center gap-2 p-3 md:p-4 bg-card rounded-2xl shadow-sm border-2 border-dashed border-border hover:border-primary/50 transition-colors min-h-[100px]"
+              >
+                <Plus size={20} className="text-muted-foreground" />
+                <span className="text-[11px] md:text-xs font-bold text-muted-foreground">Ajouter</span>
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
