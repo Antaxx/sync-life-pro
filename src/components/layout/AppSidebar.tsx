@@ -5,7 +5,7 @@ import {
   ListChecks,
   BookOpen,
   Heart,
-  Briefcase,
+  
   Target,
   Wallet,
   Bot,
