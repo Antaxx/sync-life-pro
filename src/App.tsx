@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Organisation from "./pages/Organisation";
 import Content from "./pages/Content";
 import Health from "./pages/Health";
-import Business from "./pages/Business";
+
 import Skills from "./pages/Skills";
 import Finances from "./pages/Finances";
 import Agents from "./pages/Agents";
@@ -35,7 +35,7 @@ const App = () => (
               <Route path="/organisation" element={<Organisation />} />
               <Route path="/content" element={<Content />} />
               <Route path="/health" element={<Health />} />
-              <Route path="/business" element={<Business />} />
+              
               <Route path="/skills" element={<Skills />} />
               <Route path="/finances" element={<Finances />} />
               <Route path="/agents" element={<Agents />} />
