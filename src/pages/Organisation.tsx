@@ -16,7 +16,7 @@ export default function Organisation() {
     realtime: true,
     orderBy: { column: "sort_order", ascending: true },
   });
-  const { data: lifeBuckets } = useSupabaseTable("life_buckets");
+  const { data: lifeBuckets, insert: insertBucket, update: updateBucket, remove: removeBucket } = useSupabaseTable("life_buckets", { orderBy: { column: "sort_order", ascending: true } });
   const { data: projects } = useSupabaseTable("projects", { filter: { status: "active" } });
 
   const [dialogOpen, setDialogOpen] = useState(false);
