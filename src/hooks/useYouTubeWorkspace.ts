@@ -77,11 +77,9 @@ export function useYouTubeWorkspace() {
 
   const createWorkspace = useCallback(async (name: string) => {
     if (!user) return;
-    const { data: ws, error } = await (supabase.from("youtube_workspaces") as any)
-      .insert({ name, created_by: user.id }).select().single();
+    const { error } = await (supabase.from("youtube_workspaces") as any)
+      .insert({ name, created_by: user.id });
     if (error) { toast({ title: "❌ Erreur", description: error.message, variant: "destructive" }); return; }
-    await (supabase.from("youtube_members") as any)
-      .insert({ workspace_id: ws.id, user_id: user.id, role: "owner", email: user.email });
     toast({ title: "✓ Workspace créé" });
     fetchAll();
   }, [user, fetchAll]);
