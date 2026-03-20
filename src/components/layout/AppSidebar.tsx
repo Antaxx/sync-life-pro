@@ -22,7 +22,6 @@ const navItems = [
   { icon: BookOpen, label: "Contenu", path: "/content" },
   { icon: Heart, label: "Santé", path: "/health" },
   { icon: Youtube, label: "YouTube", path: "/youtube" },
-  { icon: Briefcase, label: "Business", path: "/business" },
   { icon: Target, label: "Compétences", path: "/skills" },
   { icon: Wallet, label: "Finances", path: "/finances" },
   { icon: Bot, label: "Agents IA", path: "/agents" },
