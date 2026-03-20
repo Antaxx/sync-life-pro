@@ -1,11 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import { Plus, Zap, Brain, Clock, CheckCircle2, Circle, ArrowUpRight, Trash2, ChevronDown, ChevronRight, CalendarDays, FolderKanban, Layers } from "lucide-react";
+import { Plus, Zap, Brain, Clock, CheckCircle2, Circle, ArrowUpRight, Trash2, ChevronDown, ChevronRight, CalendarDays, FolderKanban, Layers, BarChart3, Pencil, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useSupabaseTable } from "@/hooks/useSupabaseTable";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router-dom";
+import { IconPicker, RenderIcon } from "@/components/organisation/IconPicker";
 
 export default function Organisation() {
   const today = new Date().toISOString().split("T")[0];
