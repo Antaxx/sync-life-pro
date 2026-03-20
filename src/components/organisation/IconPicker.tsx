@@ -6,7 +6,7 @@ import {
   Shield, Lock, Key, Bell, Mail, MessageCircle, Phone, Monitor,
   Laptop, Smartphone, Tv, Headphones, Mic, Video, Film, Image,
   FileText, Folder, Archive, Bookmark, Tag, Hash, AtSign, Link2,
-  Search, Settings, Wrench, Tool, Lightbulb, Battery, Wifi, Bluetooth,
+  Search, Settings, Wrench, Lightbulb, Battery, Wifi, Bluetooth,
   Clock, Timer, Calendar, CalendarDays, Alarm, Watch, Hourglass,
   Car, Bus, Train, Plane, Rocket, Ship, Bike, Footprints,
   TreePine, Flower2, Leaf, Mountain, Waves, Droplets, Wind, Snowflake,
