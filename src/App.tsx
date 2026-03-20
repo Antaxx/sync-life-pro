@@ -35,6 +35,8 @@ const App = () => (
             <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/organisation" element={<Organisation />} />
+              <Route path="/organisation/bucket/:id" element={<LifeBucketDetail />} />
+              <Route path="/organisation/analyse" element={<LifeBucketAnalyse />} />
               <Route path="/content" element={<Content />} />
               <Route path="/health" element={<Health />} />
               
