@@ -7,7 +7,7 @@ import {
   Laptop, Smartphone, Tv, Headphones, Mic, Video, Film, Image,
   FileText, Folder, Archive, Bookmark, Tag, Hash, AtSign, Link2,
   Search, Settings, Wrench, Lightbulb, Battery, Wifi, Bluetooth,
-  Clock, Timer, Calendar, CalendarDays, Alarm, Watch, Hourglass,
+  Clock, Timer, Calendar, CalendarDays, Watch, Hourglass,
   Car, Bus, Train, Plane, Rocket, Ship, Bike, Footprints,
   TreePine, Flower2, Leaf, Mountain, Waves, Droplets, Wind, Snowflake,
   Apple, Cherry, Grape, Pizza, Sandwich, CakeSlice, IceCream, Cookie,
