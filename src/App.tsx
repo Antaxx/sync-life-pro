@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Organisation from "./pages/Organisation";
 import Content from "./pages/Content";
 import Health from "./pages/Health";
-import Business from "./pages/Business";
+
 import Skills from "./pages/Skills";
 import Finances from "./pages/Finances";
 import Agents from "./pages/Agents";
