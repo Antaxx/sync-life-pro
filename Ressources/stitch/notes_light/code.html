@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-md mx-auto bg-white dark:bg-slate-900 min-h-screen flex flex-col shadow-xl">
+<!-- Header Section -->
+<header class="p-4 flex items-center justify-between sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-10">
+<h1 class="text-2xl font-bold tracking-tight">Notes</h1>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">search</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">account_tree</span>
+</button>
+</div>
+</header>
+<!-- Pill Filters -->
+<div class="px-4 py-2 flex gap-2 overflow-x-auto no-scrollbar">
+<button class="px-5 py-1.5 bg-primary text-white rounded-full text-sm font-medium whitespace-nowrap">Toutes</button>
+<button class="px-5 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium whitespace-nowrap">Brutes</button>
+<button class="px-5 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium whitespace-nowrap">Permanentes</button>
+</div>
+<!-- Note List -->
+<div class="p-4 flex flex-col gap-4 overflow-y-auto flex-1">
+<!-- Note Card 1 -->
+<div class="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded">Permanente</span>
+<span class="text-xs text-slate-400">12 Oct 2023</span>
+</div>
+<h3 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Structure de la pensée</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">L'organisation hiérarchique versus le réseau de neurones. Comment LifeSync permet de mapper...</p>
+</div>
+<!-- Note Card 2 -->
+<div class="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded">Brutes</span>
+<span class="text-xs text-slate-400">10 Oct 2023</span>
+</div>
+<h3 class="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Idées de projet LifeSync</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">1. Intégration calendrier. 2. Visualisation par graphe. 3. Système de tags sémantiques...</p>
+</div>
+<!-- Editor Section (Drafting State) -->
+<div class="mt-4 p-6 rounded-xl border-2 border-primary/20 bg-white dark:bg-slate-900 min-h-[300px] flex flex-col relative">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2 text-primary font-medium text-xs">
+<span class="material-symbols-outlined text-sm">cloud_done</span>
+                        Sauvegardé
+                    </div>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">MARKDOWN</span>
+</div>
+<div class="flex-1">
+<h2 class="text-xl font-bold mb-4 outline-none" contenteditable="true">Nouvelle note de recherche</h2>
+<div class="text-slate-700 dark:text-slate-300 outline-none text-sm leading-relaxed" contenteditable="true">
+                        # Introduction
+                        Le concept de **Second Cerveau** est central à LifeSync. 
+                        
+                        *   Capturer
+                        *   Organiser
+                        *   Synthétiser
+                        
+                        [[Projets_Futurs]]
+                    </div>
+</div>
+<!-- Markdown Toolbar -->
+<div class="mt-6 flex items-center justify-between bg-primary rounded-lg p-1 text-white shadow-lg">
+<div class="flex gap-1">
+<button class="p-2 hover:bg-white/20 rounded">
+<span class="material-symbols-outlined text-lg">format_bold</span>
+</button>
+<button class="p-2 hover:bg-white/20 rounded">
+<span class="material-symbols-outlined text-lg">format_italic</span>
+</button>
+<button class="p-2 hover:bg-white/20 rounded">
+<span class="material-symbols-outlined text-lg">format_h1</span>
+</button>
+<button class="p-2 hover:bg-white/20 rounded">
+<span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+</button>
+<button class="p-2 hover:bg-white/20 rounded">
+<span class="material-symbols-outlined text-lg">code</span>
+</button>
+</div>
+<button class="px-3 py-1 flex items-center gap-1 hover:bg-white/20 rounded font-bold text-xs">
+<span class="material-symbols-outlined text-sm">link</span>
+                        [[]]
+                    </button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">description</span>
+<span class="text-[10px] font-bold">Notes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-medium">Graphe</span>
+</a>
+<div class="relative -top-6">
+<button class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Calendrier</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profil</span>
+</a>
+</nav>
+</div>
+</body></html>

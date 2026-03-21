@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeSync - Inbox RSS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196b3e",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "serif": ["Lora", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .reader-content {
+            font-family: 'Lora', serif;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d2e4da;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #196b3e;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 h-screen overflow-hidden flex">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-primary/10 bg-white dark:bg-slate-900 flex flex-col h-full shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">sync_saved_locally</span>
+</div>
+<h1 class="text-xl font-bold text-primary tracking-tight">LifeSync</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary cursor-pointer">
+<span class="material-symbols-outlined">rss_feed</span>
+<span class="font-medium text-slate-900">Inbox RSS</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">article</span>
+<span class="font-medium">Contenu</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="font-medium">Notes</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">settings</span>
+<span class="font-medium">Paramètres</span>
+</div>
+</nav>
+<div class="p-6 border-t border-primary/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20" data-alt="User profile avatar placeholder"></div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Marc-Antoine</p>
+<p class="text-xs text-primary/60 truncate">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Top Header / Tabs -->
+<header class="h-16 border-b border-primary/10 bg-white flex items-center justify-between px-6 shrink-0">
+<div class="flex gap-4">
+<button class="px-4 py-1 rounded-full bg-primary text-white text-sm font-medium">INBOX RSS</button>
+<button class="px-4 py-1 rounded-full bg-primary/5 text-slate-600 text-sm font-medium hover:bg-primary/10">CONTENU</button>
+<button class="px-4 py-1 rounded-full bg-primary/5 text-slate-600 text-sm font-medium hover:bg-primary/10">NOTES</button>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60">search</span>
+<input class="pl-10 pr-4 py-2 bg-background-light border-none rounded-full text-sm w-64 focus:ring-1 focus:ring-primary" placeholder="Rechercher..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/5 text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Three Column Inbox -->
+<div class="flex flex-1 min-h-0 overflow-hidden">
+<!-- Column 1: Source List -->
+<div class="w-[200px] border-r border-primary/10 bg-background-light/50 flex flex-col shrink-0 overflow-y-auto">
+<div class="p-4 flex flex-col gap-1">
+<h3 class="text-[11px] font-bold text-primary uppercase tracking-widest px-2 mb-2">Sources</h3>
+<div class="group flex items-center justify-between p-2 rounded-lg bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">list</span>
+<span class="text-sm font-medium">Tous les flux</span>
+</div>
+<span class="text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-md">45</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-sm bg-blue-500" data-alt="TechCrunch Favicon"></div>
+<span class="text-sm">TechCrunch</span>
+</div>
+<span class="text-[10px] text-slate-400">12</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-sm bg-red-500" data-alt="The Verge Favicon"></div>
+<span class="text-sm">The Verge</span>
+</div>
+<span class="text-[10px] text-slate-400">5</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-sm bg-black" data-alt="Medium Favicon"></div>
+<span class="text-sm">Medium</span>
+</div>
+<span class="text-[10px] text-slate-400">18</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-primary/5 cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-sm bg-orange-500" data-alt="Hacker News Favicon"></div>
+<span class="text-sm">Hacker News</span>
+</div>
+<span class="text-[10px] text-slate-400">10</span>
+</div>
+</div>
+</div>
+<!-- Column 2: Article List -->
+<div class="w-[340px] border-r border-primary/10 bg-background-light flex flex-col shrink-0 overflow-hidden">
+<div class="p-4 border-b border-primary/10 shrink-0">
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="px-3 py-1 bg-white border border-primary text-primary text-xs font-medium rounded-full shrink-0">Non lus</button>
+<button class="px-3 py-1 bg-white border border-primary/10 text-slate-600 text-xs font-medium rounded-full shrink-0 hover:bg-white/50">Favoris</button>
+<button class="px-3 py-1 bg-white border border-primary/10 text-slate-600 text-xs font-medium rounded-full shrink-0 hover:bg-white/50">Archives</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Article Card 1 -->
+<div class="p-4 bg-white rounded-xl shadow-sm border border-primary/5 hover:border-primary/20 transition-all cursor-pointer ring-1 ring-primary/5">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-4 h-4 rounded-sm bg-blue-500" data-alt="Source favicon"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">TechCrunch • 4m read</span>
+</div>
+<h4 class="text-sm font-bold leading-snug mb-2 text-slate-800">Apple's latest innovation in VR: What we know so far</h4>
+<p class="text-xs text-slate-500 line-clamp-2">The tech giant is set to disrupt the headset market once again with a focus on spatial computing...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-[10px] text-slate-400">Il y a 2h</span>
+<span class="material-symbols-outlined text-sm text-primary/40 hover:text-primary">star</span>
+</div>
+</div>
+<!-- Article Card 2 -->
+<div class="p-4 bg-white rounded-xl shadow-sm border border-primary shadow-sm ring-2 ring-primary/10 cursor-pointer">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-4 h-4 rounded-sm bg-red-500" data-alt="Source favicon"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">The Verge • 12m read</span>
+</div>
+<h4 class="text-sm font-bold leading-snug mb-2 text-slate-800">How to secure your digital life in 2024</h4>
+<p class="text-xs text-slate-500 line-clamp-2">From hardware keys to privacy-first browsers, here is your guide to digital sovereignty...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-[10px] text-slate-400">Il y a 5h</span>
+<span class="material-symbols-outlined text-sm text-primary">star_half</span>
+</div>
+</div>
+<!-- Article Card 3 -->
+<div class="p-4 bg-white rounded-xl shadow-sm border border-primary/5 hover:border-primary/20 transition-all cursor-pointer ring-1 ring-primary/5">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-4 h-4 rounded-sm bg-black" data-alt="Source favicon"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Medium • 8m read</span>
+</div>
+<h4 class="text-sm font-bold leading-snug mb-2 text-slate-800">The philosophy of minimalism in user interface design</h4>
+<p class="text-xs text-slate-500 line-clamp-2">Less is more has become a cliché, but its principles remain the foundation of good product design...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-[10px] text-slate-400">Hier</span>
+<span class="material-symbols-outlined text-sm text-primary/40 hover:text-primary">star</span>
+</div>
+</div>
+<!-- Article Card 4 -->
+<div class="p-4 bg-white rounded-xl shadow-sm border border-primary/5 hover:border-primary/20 transition-all cursor-pointer ring-1 ring-primary/5 opacity-70">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-4 h-4 rounded-sm bg-orange-500" data-alt="Source favicon"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Hacker News • 15m read</span>
+</div>
+<h4 class="text-sm font-bold leading-snug mb-2 text-slate-800">Rust vs Zig: A performance comparison for system tools</h4>
+<p class="text-xs text-slate-500 line-clamp-2">Exploring the memory safety and runtime overhead of the two modern systems programming languages...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-[10px] text-slate-400">Hier</span>
+<span class="material-symbols-outlined text-sm text-primary/40 hover:text-primary">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 3: Reader Mode -->
+<div class="flex-1 bg-white flex flex-col items-center overflow-y-auto relative no-scrollbar">
+<div class="w-full max-w-[680px] px-8 py-16 reader-content">
+<div class="flex items-center gap-3 mb-8 text-primary/60 font-sans font-medium text-sm">
+<div class="w-6 h-6 rounded-sm bg-red-500" data-alt="The Verge Logo Small"></div>
+<span>The Verge</span>
+<span>•</span>
+<span>12 Janvier 2024</span>
+</div>
+<h1 class="text-4xl font-bold text-slate-900 leading-tight mb-8">Comment sécuriser votre vie numérique en 2024</h1>
+<div class="reader-image w-full h-80 rounded-2xl bg-primary/10 mb-10 overflow-hidden" data-alt="Atmospheric abstract pattern representing digital security">
+<div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary/20">lock</span>
+</div>
+</div>
+<div class="text-lg text-slate-800 leading-relaxed space-y-6 text-justify">
+<p>Le paysage de la cybersécurité évolue plus rapidement que jamais. En 2024, il ne s'agit plus seulement d'avoir un mot de passe complexe, mais de construire une véritable souveraineté numérique.</p>
+<h2 class="text-2xl font-bold pt-4">L'ère de l'authentification sans mot de passe</h2>
+<p>Les clés de sécurité physiques et les passkeys deviennent la norme. En éliminant la nécessité de mémoriser des chaînes de caractères complexes, nous réduisons drastiquement les risques de phishing.</p>
+<p>L'une des plus grandes vulnérabilités reste l'utilisation de méthodes de récupération obsolètes. Si vous utilisez encore des questions de sécurité basées sur le nom de votre animal de compagnie, il est temps de repenser votre approche.</p>
+<blockquote class="border-l-4 border-primary pl-6 italic my-8 text-xl text-slate-600">
+                            "La sécurité n'est pas un produit que l'on achète, mais un processus que l'on cultive quotidiennement à travers nos habitudes numériques."
+                        </blockquote>
+<p>Enfin, parlons de la confidentialité des données. L'utilisation de navigateurs axés sur le respect de la vie privée et de moteurs de recherche qui ne vous tracent pas est devenue essentielle pour quiconque souhaite garder le contrôle sur son identité numérique.</p>
+<p>Il est également recommandé d'effectuer régulièrement des audits de vos permissions d'applications sur vos appareils mobiles. Souvent, des applications oubliées continuent de collecter des données de localisation ou d'accès au micro sans raison apparente.</p>
+</div>
+<div class="h-32"></div> <!-- Spacer for highlight bar -->
+</div>
+<!-- Floating AI / Action Bar -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 p-2 bg-slate-900/90 backdrop-blur-md rounded-full border border-white/10 shadow-2xl z-50">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-full text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+<span>IA</span>
+</button>
+<div class="w-px h-6 bg-white/20 mx-1"></div>
+<button class="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined">text_fields</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-white/80 hover:text-white rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined">archive</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

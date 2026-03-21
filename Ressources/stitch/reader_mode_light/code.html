@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeSync Reader Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1a6b3a",
+              "background-light": "#f6f8f7",
+              "background-dark": "#131f18",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Lora", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col bg-white dark:bg-background-dark overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex items-center bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10 p-4 justify-between">
+<div class="flex items-center gap-3">
+<button class="text-slate-900 dark:text-slate-100 hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h2 class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-tight tracking-tight uppercase tracking-widest">LifeSync Source</h2>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Article Content Container -->
+<main class="max-w-3xl mx-auto px-6 pt-10 pb-32">
+<!-- Article Header -->
+<header class="mb-10">
+<h1 class="text-slate-900 dark:text-slate-100 text-[40px] font-bold leading-[1.1] tracking-tight mb-4">
+                    The Future of Personal Growth in a Digital World
+                </h1>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="font-medium">By Jane Doe</span>
+<span class="opacity-30">•</span>
+<span>Oct 24, 2023</span>
+</div>
+</header>
+<!-- Featured Image -->
+<div class="mb-10 aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<img alt="Digital wellness and meditation visualization" class="w-full h-full object-cover" data-alt="Digital wellness and meditation visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuG9qO4Oo2lPRWnU-jDBnvmWxOnb6vAPANyEl_g9VQIS5Iqsk2_15pljKoqa_poMd6fJC3Fi2yxSGrLCPaDuM65vXM-0R9uD1X-E53m65SDL2a2jmI-jpwS8YGWptLAmwOgpPoeyMR9GdXYJni-QR7ZtaatVyP-QmF7fVGFfjutzsAm4j0aq0zQj089BneyOfG4JPRVDyeNQVPjqtrIcOs4c1EX4xN6XSC2jWzAqunknd_ichDrRR5lBrfER_RecJybbhVfKPXovsC"/>
+</div>
+<!-- Article Body (Serif) -->
+<article class="font-serif text-[1.25rem] leading-[1.8] text-slate-800 dark:text-slate-200 space-y-8">
+<p>
+                    In the rapidly evolving landscape of the 21st century, finding a balance between our digital lives and our inner selves has become more critical than ever. <span class="bg-primary/20 border-b-2 border-primary/40 px-1">LifeSync represents a new paradigm in how we approach this challenge</span>, offering tools that bridge the gap between technology and human flourishing.
+                </p>
+<p>
+                    The core philosophy of LifeSync is built upon three pillars: intentionality, reflection, and action. By leveraging advanced AI, the platform doesn't just track your data; it translates it into meaningful insights that resonate with your core values.
+                </p>
+<p>
+                    Consider the way we interact with our screens. Traditionally, digital consumption has been passive—a stream of information flowing one way. LifeSync turns this on its head, encouraging an active dialogue between user and interface.
+                </p>
+<p>
+                    Research suggests that the mere presence of a smartphone can reduce cognitive capacity. However, when these devices are reimagined as extensions of our mindfulness practices rather than distractions from them, the potential for growth is boundless.
+                </p>
+<blockquote class="border-l-4 border-primary pl-6 py-2 italic text-slate-600 dark:text-slate-400 my-10">
+                    "True digital harmony is not found in the absence of technology, but in the intentional integration of it into our deepest human values."
+                </blockquote>
+<p>
+                    As we look toward the next decade, the convergence of biometric data and personalized coaching will redefine the standard for personal development. The journey toward self-actualization is no longer a solitary one; it's a collaborative effort between human intuition and algorithmic precision.
+                </p>
+</article>
+</main>
+<!-- Bottom Highlights Bar -->
+<div class="fixed bottom-0 left-0 right-0 p-4 pb-8 flex justify-center pointer-events-none">
+<div class="w-full max-w-lg bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-primary/10 flex items-center justify-between p-3 pointer-events-auto">
+<div class="flex items-center gap-4 pl-3">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]">ink_highlighter</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-none">12 highlights</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Found in this article</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-11 px-6 bg-primary text-white rounded-xl font-bold flex items-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+<span>IA</span>
+<span class="material-symbols-outlined text-[18px]">temp_preferences_custom</span>
+</button>
+<button class="size-11 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

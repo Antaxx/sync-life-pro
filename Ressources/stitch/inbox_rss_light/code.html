@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Header Section -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-6">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Inbox</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<!-- Pill Tabs -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold whitespace-nowrap">
+                Inbox RSS
+            </button>
+<button class="px-5 py-2 rounded-full bg-primary/10 text-primary dark:text-primary/90 text-sm font-semibold whitespace-nowrap">
+                Contenu
+            </button>
+<button class="px-5 py-2 rounded-full bg-primary/10 text-primary dark:text-primary/90 text-sm font-semibold whitespace-nowrap">
+                Notes
+            </button>
+</div>
+</header>
+<!-- Article List -->
+<main class="px-4 space-y-4 mt-4">
+<!-- Article Card 1 -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist circle icon for source brand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNNdRhM3E3HiaSRjFLllwJXZ-lhXRrZQA_86sQaWDL0xZb51fp9wPdtJLKHF76srbWMjjPt3Yk8t9iwWDGiW7Z6EjjasioFRIVlNfwrfe6H1K8GgvuWUeCr1MBlXudnqsBaetiOxxoECDZTICS3ySaX3qtp9W17n71DnoyRFRAjX1BfA86-YKCO2szpMUqr6KhiFDeYdXJ9o3yN89IVHJ6oHdGSHi0y46AIeT7KPb2P1x6e96D0RkfmFWtQ8d837TIuHUBbsiO-_kU"/>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">The Daily Stoic • 2h ago</span>
+</div>
+<h2 class="text-base font-bold leading-tight text-slate-900 dark:text-slate-100">How to optimize your morning routine for peak focus</h2>
+<div class="flex items-center gap-2 pt-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary">
+                            Non lu
+                        </span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-700 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Sunlight hitting a clean workspace desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrrUBlPnrdJc5HaFN997ipt_36X9MJDTJPb0u_T1SZsHywdY7TvA6oIOAPzuIlSctmQPIvOhnnSMn6piU18P6XoeVBTJW2tXq0y86rOj9R1itDTdshGup7-lXu1qwpnQK04LPpX91C1LgoxIerWmgh4jLbTvQ9OpGXLMMmklEnHzqrPyFQ3giClD-SRdmIDpFTbcXXUzdkfvtuY54ZUAeA6gt0kj6SFPWGr5pFg-u4li_XD9m0i0_E5JDcNiobuDM_tmzlRZ90B1nS"/>
+</div>
+</div>
+</div>
+<!-- Article Card 2 -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Tech logo placeholder circle icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNOyl_y1H8Vraj9XJ7c5f3AV4LlkPIIejJHcG0QBTBoOeiMXP6Y-oIp8y2Kt4N0fhr6HMDXD3uqRdypAYFOkMTI51DAJ8LNwKgqLALbBHtffYhXVf4mZ7m2GBqteNyEojphCuDKMMxNvmp3dNiFR9W9uGGiaTFPNIfB6_OeuylrDqB0YkjdKOkRL4OHP9XSsSZ0hJPQ_yl4j351m_QL1L2ZpT6v2arXG_02jU00v7FePF2yv-8IJYOfZW_dBKIgKgwDO4UjXqNvG2F"/>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">TechCrunch • 5h ago</span>
+</div>
+<h2 class="text-base font-bold leading-tight text-slate-900 dark:text-slate-100">The future of decentralized AI in 2024</h2>
+<div class="flex items-center gap-2 pt-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                            Archivé
+                        </span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-700 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Abstract neural network visualization nodes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHF1r0-E2OUQtdGK6xdVl5iAsfVcMqKYpD4M-api1FZe56OL6_8ITHDYf_Q46khQ5cPMJeu_a7hNCcb4VizLYEMM2Rb3SKXOowrlBf7QqqE7jLhVq2LLNVa5ooofJKwXsLoBm1qhPd9OVb-i0iEhhb3NeR314nNQG7YUhELP5kADnEUHYBbiJladPmP4ytKbrajI2wbZcGUbwnjmBHsjYk-uni1Evmwc0-Yl8Yz7lV7Z2Fd1YSVXh7QvMi0rVTaV81hmoKsuhAuuDI"/>
+</div>
+</div>
+</div>
+<!-- Article Card 3 -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5">
+<div class="flex gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="News organization logo placeholder icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWbczUBco-qQHFEyQA-eX-2WNcwoJ60gKGaxIT_lJDlEy1qz3R7qIq1gIgyBuqdTWhlfkGKsgkjiqUDjanaSNatmxPh0DoWaj1KwvvUoWnrl_FsvVp389Tto3eAf-z67KQmUgHIwnfDzAngApKCY2WNxvmoVuMsezmMVG0n6Qm5aqWRMhD3e65MuybMV9SsjJ8cHEzD46Rh7EECLtzRBBQWjjql-E96gl1eR9dVQDPobm6d_rSlSbzJcC5upL3sevGoqG-kRdePQTM"/>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">NY Times • 8h ago</span>
+</div>
+<h2 class="text-base font-bold leading-tight text-slate-900 dark:text-slate-100">Why the 4-day work week is gaining global momentum</h2>
+<div class="flex items-center gap-2 pt-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary">
+                            Non lu
+                        </span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-700 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Calendar and clock minimalist concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9vO7m9Cu1aB147DHsmaShbaqI9VDdtNA3OpEkU8IUt5JGHcSAD1ucr7Ke6pc0Mgzxq1GUwLYdvoja5hrAB5JAKdhQ4WqcdSASmiFEUXuBhrJpnvahLCaF373O-FMopjPGAwdCk_CntS6goKrivg45EU_nRLLJF8pF3iH-UqEkO80OAsfuGN-tRvYAu1VKFuRu33mQ1z8x_h2pOZOc1oPJbs3fNJS_vjRDqd4KHzhGnK0gWkZniyg_wVGUO_iATwQimphMwuzj7egT"/>
+</div>
+</div>
+</div>
+<!-- Article Card 4 -->
+<div class="bg-white dark:bg-slate-800/50 rounded-xl p-4 shadow-sm border border-primary/5 opacity-80">
+<div class="flex gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Writing platform logo placeholder icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1lirwmq1R77nKSJIbngpLAns8WT_72rMAHxiGfqIPyaeWYP3OV_wcRDcFuKGQsPKTrVdhZ279e0RBFbNuSoULbTm3ijDMrynDdD7hvejSZC7S26xFwK7UN2-Qe8h7J1JxuOddVmHXforYCKWNGYy8Bcchw0pFV_SrhLMK7RyEaPAfHEVLOg4jVjA33TQ-_4iZ90H_Bd0B_wkeghpAR7cPnWoV81dwlLl-BYJV6FshuY2cTKXpW1iFG8vc6AT_rN2AnC4ThdXasNhF"/>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Medium • 1d ago</span>
+</div>
+<h2 class="text-base font-bold leading-tight text-slate-900 dark:text-slate-100">Sustainable living: 10 small changes that matter</h2>
+<div class="flex items-center gap-2 pt-1">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                            Archivé
+                        </span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-700 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Sprout growing from green plant life" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQT07crq454X5CCnw6ba2eWGMn-oud_suqC1FFYIV9qVNnmGR2L_tDOIZIFjnTgEzsQlOJstU4b5VM2jCSEneCNECLL1juecHniRhXSP-s9_2cmiQuWrx8h0t41VgstwMoeBEspRJtfohWg7bhPeDkwUzksrrdsY3TvDqwglU9XqDw__a9t0dq_fSdHTCj4-6dU5cEgswfHq9GeazfRnzAFN1YftguESTHrBGtI7Tjq4VuyheAHPonVZ9R3Eo_RYt8wQ2IafW-kdyA"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center z-20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 flex justify-between items-center z-30">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-[1]">trophy</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Inbox</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Discover</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Library</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+</body></html>

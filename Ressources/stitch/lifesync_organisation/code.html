@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeSync Organisation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "soft-green": "#e8f5e9",
+                        "background-page": "#f0f7f0",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "sans": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Outfit', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        details summary::-webkit-details-marker { display: none; }
+        .sidebar-shadow { box-shadow: 4px 0 15px -3px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-background-page text-slate-900 font-display">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-[220px] bg-white sidebar-shadow flex flex-col p-5 gap-6 shrink-0 z-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="size-8 rounded-full bg-soft-green flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">bolt</span>
+</div>
+<h1 class="text-xl font-bold text-black tracking-tight">LifeSync</h1>
+</div>
+<nav class="flex flex-col gap-1 overflow-y-auto pr-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-soft-green text-primary font-bold" href="#">
+<span class="material-symbols-outlined text-xl">folder_kanban</span>
+<span class="text-sm">Organisation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">book_open</span>
+<span class="text-sm font-medium">Contenu &amp; Notes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">heart_plus</span>
+<span class="text-sm font-medium">Santé</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">work</span>
+<span class="text-sm font-medium">Business</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">target</span>
+<span class="text-sm font-medium">Compétences</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+<span class="text-sm font-medium">Finances</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+<span class="text-sm font-medium">Agents IA</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-soft-green/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">school</span>
+<span class="text-sm font-medium">Cours</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-100 space-y-4">
+<button class="w-full flex items-center justify-center gap-2 h-11 rounded-[50px] bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Capture rapide</span>
+</button>
+<div class="flex items-center gap-3 px-1">
+<div class="size-9 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Antonin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4nD-pC3j3VKcMTwj-WBp91tkkSl01K67-xpj8lQ4QCeXRWm6BQN_HMsYtynijM_Ts6qGvLSEdnInwE7SRqrf6JFqNlSvT3xwy2zL1MNOqWt4a8GUb7LdcNk5bv-OlIiQhQxzT8GAFGa_Kfyj4owhL2SMU9Iyj-mL7Djth-WHrvAztSMoytU8rdGyQ4bwxMLGOyesaLLKbbu3idcHart6h6xvggZBuqEu_jd2cFnB6g9ttTIH3gV5rXQn7mPSCjxdd_C4zifnXnw"/>
+</div>
+<div class="min-w-0">
+<p class="text-sm font-bold text-slate-900 truncate">Antonin</p>
+<p class="text-[10px] text-primary font-bold uppercase tracking-wide">Premium Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8 overflow-y-auto">
+<header class="mb-10 flex justify-between items-start">
+<div>
+<h2 class="text-4xl font-black text-black tracking-tight">Organisation</h2>
+<p class="text-slate-500 font-medium mt-1">Gérez vos espaces de travail et vos priorités.</p>
+</div>
+<div class="flex gap-3">
+<div class="size-10 rounded-full bg-white shadow-sm flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div class="size-10 rounded-full bg-white shadow-sm overflow-hidden border-2 border-white">
+<img alt="Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4nD-pC3j3VKcMTwj-WBp91tkkSl01K67-xpj8lQ4QCeXRWm6BQN_HMsYtynijM_Ts6qGvLSEdnInwE7SRqrf6JFqNlSvT3xwy2zL1MNOqWt4a8GUb7LdcNk5bv-OlIiQhQxzT8GAFGa_Kfyj4owhL2SMU9Iyj-mL7Djth-WHrvAztSMoytU8rdGyQ4bwxMLGOyesaLLKbbu3idcHart6h6xvggZBuqEu_jd2cFnB6g9ttTIH3gV5rXQn7mPSCjxdd_C4zifnXnw"/>
+</div>
+</div>
+</header>
+<!-- Quick Actions -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<button class="flex items-center justify-center gap-2 h-14 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-xl">add_task</span>
+<span>Tâche complète</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-14 rounded-2xl bg-white text-slate-700 font-bold shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-xl text-primary">bolt</span>
+<span>Tâche rapide</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-14 rounded-2xl bg-white text-slate-700 font-bold shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-xl text-primary">timer</span>
+<span>Do Now</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-14 rounded-2xl bg-white text-slate-700 font-bold shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-xl text-primary">cached</span>
+<span>Routine</span>
+</button>
+</div>
+<!-- Accordions Container -->
+<div class="flex flex-col gap-4">
+<!-- AUJOURD'HUI Section (Open) -->
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group border border-transparent" open="">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Aujourd'hui</h3>
+</div>
+<span class="text-sm font-medium text-slate-400">4 tâches restantes</span>
+</summary>
+<div class="p-6 border-t border-slate-50 bg-slate-50/20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 flex flex-col gap-3">
+<!-- Task Item 1 -->
+<div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<p class="font-semibold text-slate-800">Finaliser le rapport trimestriel</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-bold uppercase tracking-tighter">Focused</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-soft-green text-primary font-bold uppercase tracking-tighter">Work</span>
+<span class="text-[10px] flex items-center text-amber-500 font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-xs">star</span> MTN Star
+                                            </span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_horiz</span>
+</div>
+<!-- Task Item 2 -->
+<div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<p class="font-semibold text-slate-800">Séance de méditation matinale</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 font-bold uppercase tracking-tighter">Calm</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-soft-green text-primary font-bold uppercase tracking-tighter">Health</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_horiz</span>
+</div>
+</div>
+<!-- Right: Mini Calendar -->
+<div class="lg:col-span-4 bg-white p-5 rounded-xl shadow-sm border border-slate-50">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-bold text-slate-700">Octobre 2023</h4>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">chevron_left</span>
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center">
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">L</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">M</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">M</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">J</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">V</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">S</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mb-2">D</span>
+<span class="text-sm py-2 rounded-lg text-slate-400">10</span>
+<span class="text-sm py-2 rounded-lg text-slate-400">11</span>
+<span class="text-sm py-2 rounded-lg bg-soft-green text-primary font-bold">12</span>
+<span class="text-sm py-2 rounded-lg text-slate-600">13</span>
+<span class="text-sm py-2 rounded-lg text-slate-600">14</span>
+<span class="text-sm py-2 rounded-lg text-slate-300">15</span>
+<span class="text-sm py-2 rounded-lg text-slate-300">16</span>
+</div>
+</div>
+</div>
+</div>
+</details>
+<!-- Other sections with soft shadow and white cards -->
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Calendrier</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400">grid_on</span>
+</summary>
+<div class="p-6 border-t border-slate-50 bg-slate-50/20">
+<div class="grid grid-cols-7 gap-2">
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+<div class="h-32 rounded-xl bg-white shadow-sm border border-slate-50"></div>
+</div>
+</div>
+</details>
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Tâches</h3>
+</div>
+<span class="text-xs font-bold bg-soft-green text-primary px-3 py-1 rounded-full">Matrice Eisenhower</span>
+</summary>
+<div class="p-6 border-t border-slate-50 bg-slate-50/20">
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl border border-red-50 bg-red-50/30 h-40 flex flex-col justify-between">
+<span class="text-xs font-bold text-red-600 uppercase">Urgent &amp; Important</span>
+<span class="material-symbols-outlined text-red-200 text-4xl">priority_high</span>
+</div>
+<div class="p-4 rounded-xl border border-blue-50 bg-blue-50/30 h-40 flex flex-col justify-between">
+<span class="text-xs font-bold text-blue-600 uppercase">Important &amp; Pas Urgent</span>
+<span class="material-symbols-outlined text-blue-200 text-4xl">schedule</span>
+</div>
+</div>
+</div>
+</details>
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Projets</h3>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border-2 border-white bg-slate-200 overflow-hidden"><img alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjkcUJEY7Fp6auSvS32kS6ZrIhYUauer01dtgfr3lzndvv885eTbO1OfB1Bj-JdvDA2GSU3OLDQmdkYkM3q3XAqysSV2oR1KZR_ufNOt7_tRUZk6rGNTA6xZxkQLnmDkb9DxxaZjU3nbFfLMv68gcP_odLqreFGW1VeYyaUcACWu_hZ9P6aBScJgcIqTP_mCaMt0-I64_zmDzfQ2WLdw8qlKQ3l-vy5lF5lbS6XgjoXr9rWLSw0EBqaCsLyxvrknvmUad3Dd_nU8g"/></div>
+</div>
+</summary>
+<div class="p-6 border-t border-slate-50 bg-slate-50/20">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 rounded-xl bg-white shadow-sm border border-slate-50">
+<div class="size-8 rounded-lg bg-soft-green flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary text-sm">rocket_launch</span>
+</div>
+<h5 class="font-bold text-slate-800">Lancement V2</h5>
+<p class="text-xs text-slate-500 mt-1">Échéance dans 12 jours</p>
+</div>
+</div>
+</div>
+</details>
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Workspaces</h3>
+</div>
+<span class="text-sm font-bold text-primary">8 actifs</span>
+</summary>
+<div class="p-4 border-t border-slate-50 bg-slate-50/20">
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="shrink-0 px-4 py-2 rounded-xl bg-primary text-white text-sm font-bold">Général</button>
+<button class="shrink-0 px-4 py-2 rounded-xl bg-white border border-slate-100 shadow-sm text-slate-600 text-sm font-semibold">Marketing</button>
+</div>
+</div>
+</details>
+<details class="bg-white rounded-2xl shadow-sm overflow-hidden group">
+<summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-0 -rotate-90 transition-transform">expand_more</span>
+<h3 class="text-lg font-bold tracking-wide text-slate-800 uppercase">Life Buckets</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400">category</span>
+</summary>
+<div class="p-6 border-t border-slate-50 bg-slate-50/20">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<div class="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm border border-slate-50">
+<div class="size-10 rounded-full bg-red-50 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<span class="text-xs font-bold text-slate-700">Santé</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-sm border border-slate-50">
+<div class="size-10 rounded-full bg-green-50 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-xs font-bold text-slate-700">Finance</span>
+</div>
+</div>
+</div>
+</details>
+</div>
+</main>
+</div>
+</body></html>

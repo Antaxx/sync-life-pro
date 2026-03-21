@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196b3e",
+                        "background-light": "#f0f7f0",
+                        "background-dark": "#131f18",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "sans": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Outfit', sans-serif; }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-72 border-r border-slate-200 bg-surface dark:bg-background-dark/50 hidden lg:flex flex-col sticky top-0 h-screen">
+<div class="p-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">storm</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-none">LifeSync</h1>
+<p class="text-xs text-primary font-medium uppercase tracking-wider">Compétences</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Tableau de bord</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">target</span>
+<span class="font-medium">Mes Compétences</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Apprentissage</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-medium">Progression</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Paramètres</span>
+</a>
+</nav>
+<div class="p-6">
+<div class="bg-primary/5 rounded-2xl p-4 border border-primary/10">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+</div>
+<span class="text-sm font-bold">Niveau 14</span>
+</div>
+<div class="w-full bg-primary/10 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+<p class="text-[10px] mt-2 text-primary/70 font-medium">850 XP avant le niveau 15</p>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<!-- Top Header -->
+<header class="h-20 bg-transparent flex items-center justify-between px-8 sticky top-0 z-10">
+<div>
+<h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Compétences</h2>
+<p class="text-xs text-slate-400 font-medium">Gérez et suivez votre évolution personnelle</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="pl-10 pr-4 py-2 bg-white/80 dark:bg-slate-800/80 border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 backdrop-blur-sm" placeholder="Rechercher une compétence..." type="text"/>
+</div>
+<button class="relative w-10 h-10 flex items-center justify-center text-slate-600 hover:bg-white rounded-full transition-colors bg-white/50">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Jean Dupont</p>
+<p class="text-[11px] text-primary font-medium">Mode Expert</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm">
+<img alt="Photo de profil" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLjZJXfP44HCLQ50-pGdRJF5pV3fimbpzaDfEEcsZytZPM20XwMe2yvwwEwf4SF9_rPJCihGiqniN5g-uLrcUU6whwe5o7-OX5D4RJ1v1VfuunpKpDrvxSRNhoaGqWqlB1l6H2okSwaUSRDR-OP-Fmn14un3yInEFzrNov1paukYPbyGpLbvaK2gX03-nBXMdlFRMSRb3u1yI2fvQITEP4YZtBC5jAdxGKDzhdgLNJGVe_t9vY8JEECFgdJsv18s2Ehc6UDpYJni8"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total Compétences</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-bold">24</span>
+<span class="text-primary text-xs font-bold px-2 py-1 bg-primary/10 rounded-lg">+2 ce mois</span>
+</div>
+</div>
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Points d'XP</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-bold">12,450</span>
+<span class="material-symbols-outlined text-primary">stars</span>
+</div>
+</div>
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Série actuelle</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-bold">12 jours</span>
+<span class="material-symbols-outlined text-orange-500" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+</div>
+</div>
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Sessions complétées</p>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-bold">156</span>
+<span class="material-symbols-outlined text-blue-500">task_alt</span>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex border-b border-slate-200 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+<button class="px-8 py-4 text-sm font-bold border-b-2 border-primary text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">grid_view</span> MES COMPÉTENCES
+                </button>
+<button class="px-8 py-4 text-sm font-bold text-slate-500 hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">auto_awesome</span> APPRENTISSAGE
+                </button>
+<button class="px-8 py-4 text-sm font-bold text-slate-500 hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">insights</span> PROGRESSION
+                </button>
+</div>
+<!-- Skill Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-primary/10" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-lg">75%</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Cognition</span>
+<div class="flex items-center gap-1 text-orange-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+<span class="text-xs font-bold">4j</span>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-lg">psychology</span>
+<h3 class="text-xl font-bold group-hover:text-primary transition-colors">Lecture Rapide</h3>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-sm">signal_cellular_alt</span>
+<span>Niveau 3 - Intermédiaire</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-lg">play_circle</span> Session
+                    </button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-primary/10" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="180" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-lg">28%</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Productivité</span>
+<div class="flex items-center gap-1 text-slate-300">
+<span class="material-symbols-outlined text-sm">local_fire_department</span>
+<span class="text-xs font-bold">0j</span>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-lg">timer</span>
+<h3 class="text-xl font-bold group-hover:text-primary transition-colors">Time Blocking</h3>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-sm">signal_cellular_alt_1_bar</span>
+<span>Niveau 1 - Novice</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-lg">play_circle</span> Session
+                    </button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-primary/10" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="10" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-lg">95%</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Bien-être</span>
+<div class="flex items-center gap-1 text-orange-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+<span class="text-xs font-bold">28j</span>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-lg">self_improvement</span>
+<h3 class="text-xl font-bold group-hover:text-primary transition-colors">Méditation</h3>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-sm">signal_cellular_alt</span>
+<span>Niveau 5 - Expert</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-lg">play_circle</span> Session
+                    </button>
+</div>
+<!-- Add New Card -->
+<button class="border-2 border-dashed border-slate-300 rounded-3xl flex flex-col items-center justify-center p-8 gap-4 hover:border-primary/40 hover:bg-white hover:shadow-sm transition-all text-slate-400 hover:text-primary min-h-[320px]">
+<div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center group-hover:bg-primary/5">
+<span class="material-symbols-outlined text-4xl">add</span>
+</div>
+<p class="font-bold">Nouvelle Compétence</p>
+</button>
+</div>
+<!-- Learning Section -->
+<div class="mt-12">
+<h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span> Agent IA
+                </h4>
+<div class="bg-primary/5 border border-primary/10 rounded-3xl p-8">
+<div class="flex flex-wrap gap-6 items-end">
+<div class="flex-1 min-w-[240px]">
+<label class="block text-[10px] font-bold text-primary uppercase mb-2 tracking-widest">Objectif de séance</label>
+<select class="w-full bg-white border-slate-200 rounded-xl py-3 px-4 focus:ring-primary text-sm font-medium">
+<option>Réviser les bases de l'Anatomie</option>
+<option>Pratiquer le Code Python</option>
+</select>
+</div>
+<div class="w-40">
+<label class="block text-[10px] font-bold text-primary uppercase mb-2 tracking-widest">Durée</label>
+<select class="w-full bg-white border-slate-200 rounded-xl py-3 px-4 focus:ring-primary text-sm font-medium">
+<option>25 min</option>
+<option>50 min</option>
+</select>
+</div>
+<button class="bg-primary text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
+                            Générer Session <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

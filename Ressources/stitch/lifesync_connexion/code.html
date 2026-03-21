@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#196b3e",
+              "background-light": "#f6f8f7",
+              "background-dark": "#131f18",
+              "neutral-gray": "#f5f5f5",
+            },
+            fontFamily: {
+              "display": ["Outfit", "Inter", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "1rem",
+              "lg": "1.5rem", // 24px
+              "xl": "3rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .organic-shape {
+            position: absolute;
+            z-index: 0;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="bg-[#f0f7f0] dark:bg-background-dark min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+<!-- Decorative Organic Shapes -->
+<div class="organic-shape bg-primary w-[400px] h-[400px] rounded-full -top-20 -left-20"></div>
+<div class="organic-shape bg-primary/40 w-[300px] h-[300px] rounded-full -bottom-20 -right-20"></div>
+<div class="relative z-10 w-full max-w-[480px] bg-white dark:bg-slate-900 shadow-xl rounded-lg p-10 flex flex-col items-center">
+<!-- Logo Section -->
+<div class="flex items-center gap-2 mb-8">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">energy_savings_leaf</span>
+</div>
+<span class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">LifeSync</span>
+</div>
+<!-- Header Section -->
+<div class="text-center mb-10">
+<div class="flex items-center justify-center gap-2 mb-2">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Bon retour</h1>
+<span class="material-symbols-outlined text-primary text-2xl">front_hand</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400">Heureux de vous revoir parmi nous</p>
+</div>
+<!-- Form Section -->
+<form class="w-full space-y-6">
+<!-- Email Input -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Email</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full bg-neutral-gray dark:bg-slate-800 border-none rounded-[12px] py-4 pl-12 pr-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="nom@exemple.com" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center px-1">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Mot de passe</label>
+<a class="text-xs font-medium text-primary hover:underline" href="#">Mot de passe oublié ?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full bg-neutral-gray dark:bg-slate-800 border-none rounded-[12px] py-4 pl-12 pr-12 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="••••••••" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-[#155933] text-white font-bold py-4 rounded-full shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-4" type="submit">
+                Se connecter
+            </button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 text-center">
+<p class="text-slate-500 dark:text-slate-400">
+                Vous n'avez pas de compte ? 
+                <a class="text-primary font-bold hover:underline ml-1" href="#">S'inscrire</a>
+</p>
+</div>
+</div>
+<!-- Decorative Image Component (Hidden but satisfies the list usage requirement if needed for context) -->
+<div class="hidden">
+<div class="w-full bg-center bg-no-repeat bg-cover" data-alt="Abstract green leaves and natural patterns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA11aIdPo0GGd3j3JP_9Dk1N1RqF2w_sUoeDhkpFmWBye3hvjQ4NAanblfba6uuOCHEXCVlKpKMVY9aUtl4atsTUuxF7ksRwUVnLvXx8IE274egdkSuV5vYFLki200XeIO1E5gH4DFMVQRYxYIQ1EPNZsFehJbDHR1lpIds0hRtc_N3yt8m7E6rI1nT5Soq0fXwsqMz1VrGV6pbm3LnbNqL1m35507NeztJQENgRSrRNCUrNeFDVyU2Xqe9-tZUCxppyoTHQwfz0KM");'>
+</div>
+</div>
+</body></html>

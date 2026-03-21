@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>LifeSync - Compétences</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark overflow-x-hidden pb-24">
+<!-- Header -->
+<div class="flex items-center bg-white dark:bg-slate-900 p-4 sticky top-0 z-10 border-b border-primary/10">
+<div class="text-primary flex size-10 items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight flex-1 text-center">Compétences</h2>
+<div class="flex size-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full text-primary">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+<!-- Skills List -->
+<div class="flex flex-col gap-4 p-4">
+<!-- Skill Card: Spanish -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-900 p-5 shadow-sm border border-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<!-- Circular Progress Ring (Duolingo Style) -->
+<div class="relative size-16 flex items-center justify-center">
+<svg class="size-full transform -rotate-90">
+<circle class="text-primary/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="44" stroke-width="6"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary text-2xl">translate</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Espagnol</h3>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<p class="text-xs font-medium uppercase tracking-wider">Intermédiaire</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center gap-1 text-orange-500 font-bold">
+<span class="material-symbols-outlined fill-1">local_fire_department</span>
+<span>7</span>
+</div>
+<p class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Série jours</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full bg-primary/20 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[10px] font-bold text-primary">A2</div>
+<div class="size-6 rounded-full bg-primary/20 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[10px] font-bold text-primary">B1</div>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+                        Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Skill Card: UI/UX Design -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-900 p-5 shadow-sm border border-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative size-16 flex items-center justify-center">
+<svg class="size-full transform -rotate-90">
+<circle class="text-primary/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="17.5" stroke-width="6"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary text-2xl">draw</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Design UI/UX</h3>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm">star</span>
+<p class="text-xs font-medium uppercase tracking-wider">Expert</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center gap-1 text-orange-500 font-bold">
+<span class="material-symbols-outlined fill-1">local_fire_department</span>
+<span>15</span>
+</div>
+<p class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Série jours</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full bg-primary/20 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-[12px]">check</span></div>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+                        Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Skill Card: Cooking -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-slate-900 p-5 shadow-sm border border-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative size-16 flex items-center justify-center">
+<svg class="size-full transform -rotate-90">
+<circle class="text-primary/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="140" stroke-width="6"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary text-2xl">skillet</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Cuisine Italienne</h3>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-sm">potted_plant</span>
+<p class="text-xs font-medium uppercase tracking-wider">Débutant</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center gap-1 text-orange-500 font-bold">
+<span class="material-symbols-outlined fill-1">local_fire_department</span>
+<span>2</span>
+</div>
+<p class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Série jours</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex -space-x-2">
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-bold transition-colors">
+                        Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Add Skill Button -->
+<button class="w-full flex items-center justify-center gap-2 py-4 mt-2 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                Nouvelle compétence
+            </button>
+</div>
+<!-- Navigation Bottom -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto flex gap-2 border-t border-primary/10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-4 pb-6 pt-3 z-20">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium leading-normal">Accueil</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span>
+<p class="text-[10px] font-bold leading-normal">Compétences</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<p class="text-[10px] font-medium leading-normal">Défis</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium leading-normal">Profil</p>
+</a>
+</div>
+</div>
+</body></html>

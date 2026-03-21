@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Main Container -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col pb-24">
+<!-- Header -->
+<header class="p-6 pb-2 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfLFJjixXPjPVa3LcXHRmef40fatAryjOuMxTzuWNHqCFdlVdKtklHRB2BnhJb2YKEM6g0J6QuP0akcoSPUZFfHuu7VqaOphHgNXb-T7CxEEWENoXV_5BUHpsgzMlynF-QySwwwZw2MN7koxFp-a6EKUgGnSNDd6BYONSOAgNHZ50LR_tUaTPNH-k7TnWrt8_vupAptUOqptVoWUtvhx_4FxLAZMN_3N-XPprsDDh_Oqyg3AjbQBpiHFKf054-iautZtgoEHv4wgfG"/>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-slate-900">Bonjour Antonin</h1>
+</div>
+<div class="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-xl filled-icon">local_fire_department</span>
+<span class="text-sm font-bold">12</span>
+</div>
+</div>
+<p class="text-slate-500 text-sm font-medium mt-1">Lundi 23 Octobre</p>
+</header>
+<!-- Metric Grid 2x2 -->
+<section class="px-6 py-4 grid grid-cols-2 gap-4">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-primary">footprint</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pas</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-bold">8,432</span>
+<span class="text-[10px] text-primary font-medium mt-0.5">84% de l'objectif</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Hydratation</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-bold">1.5L</span>
+<span class="text-[10px] text-slate-400 font-medium mt-0.5">Cible: 2.5L</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Entraînement</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-bold">45m</span>
+<span class="text-[10px] text-primary font-medium mt-0.5">Séance cardio terminée</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Projets</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xl font-bold">2</span>
+<span class="text-[10px] text-slate-400 font-medium mt-0.5">En cours cette semaine</span>
+</div>
+</div>
+</section>
+<!-- Focus du Jour -->
+<section class="px-6 py-4">
+<h2 class="text-lg font-bold mb-4 text-slate-900">Focus du jour</h2>
+<div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+<ul class="space-y-4">
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary filled-icon">check_box</span>
+<span class="text-sm font-medium">Réviser le dossier Client X</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-red-100 text-red-600 text-[10px] font-bold uppercase">Urgent</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-300">check_box_outline_blank</span>
+<span class="text-sm font-medium">Appel équipe Design</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase">Important</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-300">check_box_outline_blank</span>
+<span class="text-sm font-medium">Planification S44</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase">Important</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- Mes Objectifs -->
+<section class="px-6 py-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold text-slate-900">Mes objectifs</h2>
+<button class="text-primary text-sm font-bold">Voir tout</button>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-800">Course Quotidienne</h3>
+<span class="text-[11px] text-slate-400 font-medium">Échéance: 30 Oct</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%]"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] font-bold text-primary">70%</span>
+<span class="text-[10px] text-slate-400">14/20 km</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-800">Lecture: 2 Livres</h3>
+<span class="text-[11px] text-slate-400 font-medium">Échéance: 15 Nov</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] font-bold text-primary">45%</span>
+<span class="text-[10px] text-slate-400">1/2 Livres</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-slate-800">Économies Voyage</h3>
+<span class="text-[11px] text-slate-400 font-medium">Échéance: 31 Déc</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[25%]"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] font-bold text-primary">25%</span>
+<span class="text-[10px] text-slate-400">500€ / 2000€</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Finances Card -->
+<section class="px-6 py-4 mb-4">
+<h2 class="text-lg font-bold mb-4 text-slate-900">Mes Finances</h2>
+<div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+<div class="flex flex-col mb-6">
+<span class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Solde Actuel</span>
+<span class="text-3xl font-bold text-slate-900">3,450.20 €</span>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-50">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+<span class="text-[11px] font-bold uppercase text-slate-400">Revenus</span>
+</div>
+<span class="text-lg font-bold text-primary">+2,800 €</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="material-symbols-outlined text-red-500 text-sm">trending_down</span>
+<span class="text-[11px] font-bold uppercase text-slate-400">Dépenses</span>
+</div>
+<span class="text-lg font-bold text-red-500">-1,240 €</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 size-14 bg-primary text-white rounded-full shadow-lg shadow-primary/40 flex items-center justify-center z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 py-3 flex justify-between items-center z-40 max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled-icon">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="text-[10px] font-bold">Objectifs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="text-[10px] font-bold">Focus</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-bold">Finance</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profil</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LifeSync - Academic Planner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196b3e",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #196b3e33;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-primary/10 bg-white dark:bg-background-dark flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">sync_saved_locally</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">LifeSync</h1>
+<p class="text-xs text-primary font-medium">Academic Planner</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Cours</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-medium">Planning</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">style</span>
+<span class="font-medium">Flashcards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<div class="flex items-center gap-3 p-2 bg-primary/5 rounded-xl">
+<div class="w-10 h-10 rounded-full bg-primary/10 overflow-hidden">
+<img alt="User avatar" data-alt="Student profile avatar with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxJDCa3LnHRtTx87lKZnRSNsZAYSr6lVL7uJs90zFIMTcsM6Mo8gtYq6WsoTvSc4dBMfUFzfmLOP1c623iKtXWGnrTj6V5z8ux0Hw5etYttHVIq0hthxAUMdDGnmjx6Iq6QGrEZrK8gw8yfHH2X3MxenfYlar_JoI5RASZPGoRutOSpzcqzbmq3qz0tX9qvwg7c4welyTYpRDhkU8bkcQEjYBD1h0C7-KJQMej4dX09wDfCVLEQnBOitEmfqrzpee3pXXDL4B9px8"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Alex Johnson</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider">Premium Student</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-background-light dark:bg-background-dark">
+<div class="max-w-6xl mx-auto p-8">
+<!-- Header -->
+<header class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<h2 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Cours</h2>
+<div class="p-2 bg-primary/10 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined">add</span>
+                        New Course
+                    </button>
+</header>
+<!-- Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Tasks due</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">12</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Next exam</p>
+<p class="text-3xl font-bold text-primary">3 days</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Average</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">16.5<span class="text-sm text-slate-400 ml-1">/20</span></p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm">
+<p class="text-slate-500 text-sm font-medium mb-1">Flashcards</p>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">150</p>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex flex-wrap gap-2 mb-8 border-b border-primary/10 pb-4">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-semibold text-sm">HUB</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Schedule</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Resources</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Grades</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Flashcards</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Notes</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-sm hover:bg-primary/5">Settings</button>
+</div>
+<!-- HUB Content: 2 Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Timeline -->
+<div class="lg:col-span-2 space-y-6">
+<h3 class="text-xl font-bold text-slate-800 dark:text-white">Today's courses</h3>
+<div class="space-y-4">
+<!-- Course Item 1 -->
+<div class="flex gap-4">
+<div class="w-16 flex flex-col items-center pt-2">
+<span class="text-xs font-bold text-slate-400 uppercase">08:30</span>
+<div class="w-px h-full bg-primary/10 mt-2"></div>
+</div>
+<div class="flex-1 bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-lg">Advanced Mathematics</h4>
+<p class="text-sm text-slate-500">Room 302 • Professor Williams</p>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded uppercase">Lecture</span>
+</div>
+</div>
+</div>
+<!-- Course Item 2 -->
+<div class="flex gap-4">
+<div class="w-16 flex flex-col items-center pt-2">
+<span class="text-xs font-bold text-slate-400 uppercase">10:45</span>
+<div class="w-px h-full bg-primary/10 mt-2"></div>
+</div>
+<div class="flex-1 bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-primary/40 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-lg">World History</h4>
+<p class="text-sm text-slate-500">Library Wing • Professor Tanaka</p>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded uppercase">Seminar</span>
+</div>
+</div>
+</div>
+<!-- Course Item 3 -->
+<div class="flex gap-4">
+<div class="w-16 flex flex-col items-center pt-2">
+<span class="text-xs font-bold text-slate-400 uppercase">14:00</span>
+<div class="w-px h-0 bg-primary/10 mt-2"></div>
+</div>
+<div class="flex-1 bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-primary/20 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-lg">Introduction to Psychology</h4>
+<p class="text-sm text-slate-500">Amphitheatre A • Professor Garcia</p>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded uppercase">Lecture</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Urgent Homework -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-800 dark:text-white">Urgent homework</h3>
+<button class="text-primary text-sm font-semibold hover:underline">View all</button>
+</div>
+<div class="space-y-4">
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<span class="w-2 h-2 rounded-full bg-red-500"></span>
+<p class="text-xs font-bold text-red-500 uppercase tracking-widest">Due tomorrow</p>
+</div>
+<h4 class="font-bold text-slate-800 dark:text-white mb-1">Calculus Problem Set #4</h4>
+<p class="text-sm text-slate-500 mb-4">Complete all 15 exercises from Chapter 3.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-800 bg-slate-300"></div>
+</div>
+<button class="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-primary/5 shadow-sm opacity-80">
+<div class="flex items-center gap-3 mb-3">
+<span class="w-2 h-2 rounded-full bg-orange-500"></span>
+<p class="text-xs font-bold text-orange-500 uppercase tracking-widest">Due Thursday</p>
+</div>
+<h4 class="font-bold text-slate-800 dark:text-white mb-1">History Essay Draft</h4>
+<p class="text-sm text-slate-500 mb-4">Initial outline and bibliography for the midterm paper.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-slate-800 bg-slate-400"></div>
+</div>
+<button class="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Flashcards Section (Appears when active, here displayed as a secondary section for preview) -->
+<div class="mt-16 pt-16 border-t border-primary/10 space-y-8">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-bold">Study Session</h3>
+<div class="flex items-center gap-4">
+<span class="text-sm text-slate-500">Subject:</span>
+<select class="bg-white dark:bg-slate-800 border-none rounded-full px-6 py-2 text-sm font-semibold shadow-sm focus:ring-2 focus:ring-primary">
+<option>Mathematics</option>
+<option>World History</option>
+<option>Psychology</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col items-center">
+<!-- Large White Central Card -->
+<div class="w-full max-w-2xl bg-white dark:bg-slate-800 aspect-[16/9] rounded-xl shadow-xl flex flex-col items-center justify-center p-12 text-center border border-primary/5 relative group cursor-pointer overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="text-sm font-bold text-primary uppercase tracking-widest mb-6">Mathematics • Chapter 4</span>
+<h2 class="text-3xl font-bold text-slate-800 dark:text-white leading-relaxed">What is the derivative of the natural logarithm ln(x)?</h2>
+<button class="mt-10 px-8 py-3 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/30 transition-transform active:scale-95">Voir réponse</button>
+</div>
+<!-- Difficulty Buttons -->
+<div class="mt-8 flex gap-4">
+<button class="px-8 py-3 rounded-full bg-red-50 text-red-600 font-bold border border-red-100 hover:bg-red-500 hover:text-white transition-all">Difficulté élevée</button>
+<button class="px-8 py-3 rounded-full bg-orange-50 text-orange-600 font-bold border border-orange-100 hover:bg-orange-500 hover:text-white transition-all">Modéré</button>
+<button class="px-8 py-3 rounded-full bg-green-50 text-green-600 font-bold border border-green-100 hover:bg-green-500 hover:text-white transition-all">Facile</button>
+</div>
+</div>
+<!-- Heatmap Area -->
+<div class="bg-white dark:bg-slate-800 p-8 rounded-xl border border-primary/5 shadow-sm mt-12">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold text-lg">Study Consistency</h4>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span>Less</span>
+<div class="flex gap-1">
+<div class="w-3 h-3 rounded-sm bg-primary/5"></div>
+<div class="w-3 h-3 rounded-sm bg-primary/20"></div>
+<div class="w-3 h-3 rounded-sm bg-primary/40"></div>
+<div class="w-3 h-3 rounded-sm bg-primary/70"></div>
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+</div>
+<span>More</span>
+</div>
+</div>
+<div class="grid grid-cols-[repeat(14,minmax(0,1fr))] gap-2">
+<!-- Simulating Heatmap Blocks -->
+<div class="aspect-square rounded-sm bg-primary/10"></div>
+<div class="aspect-square rounded-sm bg-primary/40"></div>
+<div class="aspect-square rounded-sm bg-primary/20"></div>
+<div class="aspect-square rounded-sm bg-primary/5"></div>
+<div class="aspect-square rounded-sm bg-primary"></div>
+<div class="aspect-square rounded-sm bg-primary/70"></div>
+<div class="aspect-square rounded-sm bg-primary/40"></div>
+<div class="aspect-square rounded-sm bg-primary/10"></div>
+<div class="aspect-square rounded-sm bg-primary/40"></div>
+<div class="aspect-square rounded-sm bg-primary/20"></div>
+<div class="aspect-square rounded-sm bg-primary/5"></div>
+<div class="aspect-square rounded-sm bg-primary"></div>
+<div class="aspect-square rounded-sm bg-primary/70"></div>
+<div class="aspect-square rounded-sm bg-primary/40"></div>
+<!-- More blocks can be added here for a full year view -->
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

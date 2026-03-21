@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a6b3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#131f18",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>LifeSync - Santé</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-xl">
+<!-- Header -->
+<header class="flex items-center bg-white dark:bg-slate-900 p-4 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800 justify-between">
+<h1 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">SANTÉ</h1>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[24px]">local_fire_department</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- 2x2 Grid of Metrics -->
+<div class="grid grid-cols-2 gap-4 p-4">
+<!-- Pas Card -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+<div class="flex items-center justify-between text-primary">
+<span class="material-symbols-outlined">steps</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Pas</span>
+</div>
+<div>
+<p class="text-2xl font-bold">6,240</p>
+<p class="text-xs text-slate-500">Objectif 10k</p>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 62.4%"></div>
+</div>
+</div>
+<!-- Eau Card -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+<div class="flex items-center justify-between text-blue-500">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Eau</span>
+</div>
+<div>
+<p class="text-2xl font-bold">1,200<span class="text-sm font-normal">ml</span></p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold">+250ml</button>
+<button class="flex-1 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold">+500ml</button>
+</div>
+</div>
+<!-- Sport Card -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+<div class="flex items-center justify-between text-orange-500">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Sport</span>
+</div>
+<p class="text-slate-500 text-sm italic">Séance prévue aujourd'hui</p>
+<button class="w-full py-2 rounded-lg bg-primary text-white text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span> Valider
+                    </button>
+</div>
+<!-- Sommeil Card -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+<div class="flex items-center justify-between text-indigo-500">
+<span class="material-symbols-outlined">dark_mode</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Sommeil</span>
+</div>
+<div>
+<p class="text-2xl font-bold">7h12</p>
+<div class="flex text-yellow-400 mt-1">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Graph -->
+<div class="px-4 py-2">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-slate-500 text-sm font-medium">Activité hebdomadaire</p>
+<h3 class="text-2xl font-bold">Moyenne: 85%</h3>
+</div>
+<span class="text-xs text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded">7 derniers jours</span>
+</div>
+<div class="relative h-40 w-full mt-6">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#1a6b3a" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#1a6b3a" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,120 Q50,30 100,80 T200,40 T300,90 T400,20 V150 H0 Z" fill="url(#chartGradient)"></path>
+<path d="M0,120 Q50,30 100,80 T200,40 T300,90 T400,20" fill="none" stroke="#1a6b3a" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="flex justify-between mt-4">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Lun</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Mar</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Mer</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Jeu</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Ven</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Sam</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">Dim</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="p-4 mt-2">
+<button class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_circle</span>
+                    Log du jour
+                </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 flex justify-around items-center py-2 px-6 z-20">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-current">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Santé</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Sport</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">eco</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Nutri</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profil</span>
+</a>
+</nav>
+</div>
+</body></html>

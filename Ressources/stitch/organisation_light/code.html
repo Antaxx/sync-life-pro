@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1a6b3a",
+              "background-light": "#f6f8f7",
+              "background-dark": "#131f18",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>LifeSync - Organisation</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center bg-background-light/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">account_tree</span>
+<h1 class="text-xl font-bold tracking-tight">Organisation</h1>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-primary/10 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 py-6 space-y-8">
+<!-- Quick Action Grid -->
+<section>
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex flex-col items-center gap-3 text-center transition-transform active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">assignment_add</span>
+</div>
+<span class="text-sm font-semibold">Tâche complète</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex flex-col items-center gap-3 text-center transition-transform active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<span class="text-sm font-semibold">Tâche rapide</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex flex-col items-center gap-3 text-center transition-transform active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">priority_high</span>
+</div>
+<span class="text-sm font-semibold">Do Now</span>
+</button>
+<button class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex flex-col items-center gap-3 text-center transition-transform active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">sync</span>
+</div>
+<span class="text-sm font-semibold">Routine</span>
+</button>
+</div>
+</section>
+<!-- Today Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold">Aujourd'hui</h2>
+<span class="text-sm text-primary font-medium">Voir tout</span>
+</div>
+<div class="space-y-3">
+<!-- Task Item 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5">
+<input class="w-6 h-6 rounded border-primary/30 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="flex-1">
+<p class="font-medium">Review weekly goals</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-[10px] font-bold uppercase tracking-wider">Work</span>
+<span class="flex items-center gap-1 text-orange-600 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> Flame
+                            </span>
+</div>
+</div>
+</div>
+<!-- Task Item 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5">
+<input class="w-6 h-6 rounded border-primary/30 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="flex-1">
+<p class="font-medium">Call the plumber</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-bold uppercase tracking-wider">Home</span>
+<span class="flex items-center gap-1 text-yellow-600 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">bolt</span> Zap
+                            </span>
+</div>
+</div>
+</div>
+<!-- Task Item 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 opacity-80">
+<input checked="" class="w-6 h-6 rounded border-primary/30 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="flex-1">
+<p class="font-medium line-through text-slate-500">Morning Meditation</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold uppercase tracking-wider">Self</span>
+<span class="flex items-center gap-1 text-brown-600 text-xs font-semibold">
+<span class="material-symbols-outlined text-sm">coffee</span> Coffee
+                            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Accordion Sections -->
+<section class="space-y-2">
+<!-- Accordion 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-lg border border-primary/5 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+<span class="font-semibold">Calendrier</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+<!-- Accordion 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-lg border border-primary/5 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">checklist</span>
+<span class="font-semibold">Tâches</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+<!-- Accordion 3 -->
+<div class="bg-white dark:bg-slate-800 rounded-lg border border-primary/5 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<span class="font-semibold">Projets</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+<!-- Accordion 4 -->
+<div class="bg-white dark:bg-slate-800 rounded-lg border border-primary/5 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+<span class="font-semibold">Workspaces</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+<!-- Accordion 5 -->
+<div class="bg-white dark:bg-slate-800 rounded-lg border border-primary/5 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-primary/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">category</span>
+<span class="font-semibold">Life Buckets</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 size-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-20">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-primary/10 px-6 py-2 pb-6 z-30">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">grid_view</span>
+<span class="text-[10px] font-bold">Org</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px] font-medium">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</body></html>
