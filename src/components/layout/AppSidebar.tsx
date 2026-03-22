@@ -5,7 +5,6 @@ import {
   ListChecks,
   BookOpen,
   Heart,
-  
   Target,
   Wallet,
   Bot,
@@ -14,6 +13,7 @@ import {
   RefreshCw,
   Youtube,
   GraduationCap,
+  Settings,
 } from "lucide-react";
 
 const navItems = [
@@ -69,19 +69,32 @@ export function AppSidebar() {
           <PlusCircle size={18} />
           Capture rapide
         </button>
-        <div className="flex items-center gap-3 border-t border-sidebar-border pt-4 px-1">
-          <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
-            {user?.email?.charAt(0).toUpperCase() ?? "U"}
+        <div className="flex flex-col border-t border-sidebar-border pt-4 px-1 gap-2">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-bold">
+              {user?.email?.charAt(0).toUpperCase() ?? "U"}
+            </div>
+            <div className="flex flex-col flex-1 min-w-0">
+              <span className="text-sm font-bold text-foreground truncate">{user?.email?.split("@")[0] ?? "Utilisateur"}</span>
+              <button
+                onClick={signOut}
+                className="text-[11px] text-muted-foreground hover:text-primary transition-colors text-left flex items-center gap-1"
+              >
+                <LogOut size={10} /> Déconnexion
+              </button>
+            </div>
           </div>
-          <div className="flex flex-col flex-1 min-w-0">
-            <span className="text-sm font-bold text-foreground truncate">{user?.email?.split("@")[0] ?? "Utilisateur"}</span>
-            <button
-              onClick={signOut}
-              className="text-[11px] text-muted-foreground hover:text-primary transition-colors text-left flex items-center gap-1"
-            >
-              <LogOut size={10} /> Déconnexion
-            </button>
-          </div>
+          <NavLink
+            to="/settings"
+            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+              location.pathname === "/settings"
+                ? "bg-primary/10 text-primary"
+                : "text-muted-foreground hover:bg-primary/5 hover:text-foreground"
+            }`}
+          >
+            <Settings size={18} />
+            <span>Paramètres</span>
+          </NavLink>
         </div>
       </div>
     </aside>
